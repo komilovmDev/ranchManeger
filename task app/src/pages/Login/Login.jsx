@@ -24,7 +24,7 @@ export default function Login() {
                         </div>
                     </div>
                     <div className="Kirish">
-                    <Link to={"/Page"}>
+                    <Link to={"/home"}>
                         <button>
                             Kirish
                         </button>

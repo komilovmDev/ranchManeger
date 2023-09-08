@@ -1,5 +1,6 @@
 import MainCard from "../../companents/mainCards/MainCard";
 import MainNav from "../../companents/mainNav/MainNav";
+import Navbar from "../../companents/navbar/Navbar";
 
 
 export default function Home() {
