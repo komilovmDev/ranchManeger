@@ -20,6 +20,7 @@ export default function Home() {
 
     return (
         <>
+            <Navbar />
             <MainNav />
             <div className="mainCards">
                 {
