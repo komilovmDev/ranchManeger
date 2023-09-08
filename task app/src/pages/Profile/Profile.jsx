@@ -1,6 +1,9 @@
 import {HiMiniArrowLongRight} from 'react-icons/hi2' 
 
 export default function Profile() {
+
+
+    
     return (
         <>
             <div className="ProfileNav">
