@@ -1,0 +1,2 @@
+# ranchManeger
+ranch manager
