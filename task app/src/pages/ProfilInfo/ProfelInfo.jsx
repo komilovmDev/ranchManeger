@@ -38,8 +38,6 @@ export default function ProfelInfo() {
                                 </div>
                             </div>
                             <div className="InputPhoto">
-                                <label htmlFor=""><input type="file" id="MyFile" /></label>
-                                <input className="sobmit" type="submit" value="saqlash"/>
                                 <div>
                                     <label htmlFor="fileInput" className="custom-file-upload">
                                         Image hare
