@@ -5,6 +5,7 @@ import Navbar from './companents/navbar/Navbar'
 import Home from './pages/Home/Home'
 import Login from './pages/Login/Login'
 import ProfelInfo from './pages/ProfilInfo/ProfelInfo'
+import User from './pages/User/User'
 
 function App() {
 
@@ -14,7 +15,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/home' element={<Home/>}/>
+          <Route path='/home' element={<User/>}/>
           <Route path='/' element={<Login />}/>
           <Route path='/Profil' element={<ProfelInfo/>}/>
         </Routes>
