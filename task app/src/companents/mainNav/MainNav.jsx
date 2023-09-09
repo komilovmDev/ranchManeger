@@ -2,7 +2,7 @@ import { BiSolidLock } from 'react-icons/bi'
 import './mainNav.css'
 import { useRef } from 'react'
 
-export default function MainNav({Addtack}) {
+export default function MainNav({ Addtack }) {
 
     const closeRef = useRef()
 
@@ -14,12 +14,14 @@ export default function MainNav({Addtack}) {
             </div>
             <div ref={closeRef} className="mainNavModel none">
                 <div className="mainNavModelCard">
-                    <button className='close' onClick={() => closeRef.current.classList.add('none')}>X</button>
+                <button className='close' onClick={() => closeRef.current.classList.add('none')}>X</button>
                     <input type="text" placeholder="Add board title" />
                     <button id='type'><BiSolidLock /><h5>Private</h5></button>
                     <div className="btns">
                         <button className='btns1'>Canel</button>
-                        <button className='btns2' onClick={() => Addtack()}>+ Create</button>
+                        <button className='onclickNon' onClick={() => closeRef.current.classList.add('none')}>
+                            <button className='btns2' onClick={() => Addtack()}>+ Create</button>
+                        </button>
                     </div>
                 </div>
             </div>

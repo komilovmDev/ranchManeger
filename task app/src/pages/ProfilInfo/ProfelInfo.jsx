@@ -46,9 +46,10 @@ export default function ProfelInfo() {
                                     <img src={imageSrc || ava} alt="User's photo" />
                                 </div>
                             </div>
-                                <div className="InputPhoto">
+                            <div className="InputPhoto">
+                                <div>
                                     <label htmlFor="fileInput" className="custom-file-upload">
-                                        Image 
+                                        Image hare
                                     </label>
                                     <input
                                         type="file"
@@ -58,7 +59,9 @@ export default function ProfelInfo() {
                                     />
                                     {selectedFile && <p>Selected file: {selectedFile.name}</p>}
                                 </div>
+                                <input className="sobmit" type="submit" value="saqlash" />
                             </div>
+                        </div>
                         <div className="PersonalName">
                             <div className="NameName">
                                 <p>
@@ -66,7 +69,9 @@ export default function ProfelInfo() {
                                 </p>
                             </div>
                             <div className="NameText">
-                                <input type="text" placeholder={"Muxammad Komilov"} />
+                                <p>
+                                    Muhammad Komilov
+                                </p>
                             </div>
                         </div>
                         <div className="PersonalAdress">
