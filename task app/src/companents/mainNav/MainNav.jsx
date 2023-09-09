@@ -4,6 +4,7 @@ import { useRef } from 'react'
 
 export default function MainNav({ setTaskData, taskData }) {
 
+
     const closeRef = useRef()
     const inputRef = useRef()
 
