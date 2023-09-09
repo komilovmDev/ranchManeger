@@ -1,0 +1,195 @@
+.ProfileNav {
+    width: 80vw;
+    margin: 30px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ProfileNav .profilNavLeft {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.statusTaskBtn {
+    width: 120px;
+    height: 44px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #828282;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.userAdd {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.userAdd__users {
+    width: auto;
+    height: 50px;
+    border-radius: 4px;
+    display: flex;
+    gap: 10px;
+}
+
+.userAdd__users img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.userAdd__userAdd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.userAdd__userAdd button {
+    width: 50px;
+    height: 50px;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    background-color: #2F80ED;
+    color: white;
+    border-radius: 4px;
+}
+
+.profilNavRight {
+    display: flex;
+    align-items: center;
+}
+
+.profilNavRight button {
+    padding: 0px 20px;
+    height: 5vh;
+    color: #828282;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.profilNavRight button:hover {
+    color: black;
+    background-color: #1111113b;
+}
+
+
+.tasks {
+    width: 80vw;
+    margin: 30px auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.taskCard {
+    min-width: 278px;
+    height: auto;
+    border-radius: 10px;
+    padding: 5px;
+    -webkit-box-shadow: 0px 0px 30px -7px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 0px 30px -7px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 0px 30px -7px rgba(34, 60, 80, 0.2);
+    background: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.tasksNav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.taskData p {
+    font-weight: 600;
+}
+
+.taskSet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.taskSet button {
+    border: none;
+    background: transparent;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.taskInfoCard {
+    margin: 5px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.taskInfoCard p {
+    font-size: 18px;
+}
+
+.taskInfoCard__usersINfo {
+    display: flex;
+    gap: 5px;
+}
+
+.taskInfoCard__usersINfo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 3px;
+}
+
+.addMiniDesc {
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    transition: 0.2s all ease-in;
+}
+
+.addMiniDesc:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.addMiniDesc input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+.addMiniDesc button {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

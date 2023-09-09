@@ -4,6 +4,7 @@ import MainNav from "../../companents/mainNav/MainNav";
 import Navbar from "../../companents/navbar/Navbar";
 import TaskCard from "../../companents/taskCard/TaskCard";
 import UserNav from "../../companents/userNav/userNav";
+import { Link } from "react-router-dom";
 
 
 export default function Home() {
@@ -42,7 +43,9 @@ export default function Home() {
             <div className="mainCards">
                 {
                     taskData.map(item => (
-                        <TaskCard item={item} />
+                        <Link to={'/TaskInfo'}>
+                            <TaskCard item={item} />
+                        </Link>
                     ))
                 }
             </div>
