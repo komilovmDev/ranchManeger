@@ -7,7 +7,7 @@ export default function Navbar() {
     return (
         <div className="navbar">
             <div className="navleft">
-                <img src={rmIcon} alt="" />
+                <Link to={'/'}><img src={rmIcon} alt="" /></Link>
                 <h3>Ranch Meneger</h3>
             </div>
             <div className="navRight">

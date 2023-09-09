@@ -1,0 +1,29 @@
+.tskcard {
+    max-width: 280px;
+    height: auto;
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.tskcard h4 {
+    font-size: 22px;
+}
+
+.userView {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.userView img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border: 1px solid black;
+    border-radius: 3px;
+}

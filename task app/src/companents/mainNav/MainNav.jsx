@@ -2,7 +2,7 @@ import { BiSolidLock } from 'react-icons/bi'
 import './mainNav.css'
 import { useRef } from 'react'
 
-export default function MainNav() {
+export default function MainNav({Addtack}) {
 
     const closeRef = useRef()
 
@@ -19,7 +19,7 @@ export default function MainNav() {
                     <button id='type'><BiSolidLock /><h5>Private</h5></button>
                     <div className="btns">
                         <button className='btns1'>Canel</button>
-                        <button className='btns2'>+ Create</button>
+                        <button className='btns2' onClick={() => Addtack()}>+ Create</button>
                     </div>
                 </div>
             </div>
