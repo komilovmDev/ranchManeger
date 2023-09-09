@@ -26,7 +26,7 @@ export default function ProfelInfo() {
                                 </div>
                             </div>
                             <div className="InputPhoto">
-                                <input type="file" id="MyFile" />
+                                <label htmlFor=""><input type="file" id="MyFile" /></label>
                                 <input className="sobmit" type="submit" value="saqlash"/>
                             </div>
                         </div>
