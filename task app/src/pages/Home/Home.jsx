@@ -34,23 +34,11 @@ export default function Home() {
         }
     ])
 
-    function Addtack() {
-        const newTask = {
-            id: taskData.length + 1 ,
-            name: "New task" ,
-            users: [
-                {
-                    image: "https://img.a.transfermarkt.technology/portrait/big/8198-1685035469.png?lm=1"
-                }
-            ]
-        };
-        setTaskData([...taskData , newTask])
-    };
 
     return (
         <>
             <Navbar />
-            <MainNav Addtack={Addtack}/>
+            <MainNav taskData={taskData} setTaskData={setTaskData}/>
             <div className="mainCards">
                 {
                     taskData.map(item => (
