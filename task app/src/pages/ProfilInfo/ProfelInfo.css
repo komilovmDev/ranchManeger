@@ -71,16 +71,16 @@
 }
 
 .ImgPhotoBox {
-    width: 4vw;
-    height: 4vw;
-    border: .1vw solid #bdbdbd95;
-    border-radius: .5vw;
-    overflow: hidden;
+  width: 4vw;
+  height: 4vw;
+  border: 0.1vw solid #bdbdbd95;
+  border-radius: 0.5vw;
+  overflow: hidden;
 }
 
 .ImgPhotoBox img {
-    width: 100%;
-    object-fit: cover;
+  width: 100%;
+  object-fit: cover;
 }
 
 .ImgPhoto {
@@ -118,40 +118,58 @@
 }
 
 .InputPhoto {
-    width: 50%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 1.5vw;
-    padding: 0 2vw;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5vw;
+  padding: 0 2vw;
 }
 
-.InputPhoto input [type=file] {
-    border: none;
+/* .InputPhoto label {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+} */
+
+input[type="file" i] {
+  appearance: none;
+  background: none;
+  cursor: default;
+  align-items: baseline;
+  color: inherit;
+  text-overflow: ellipsis;
+  white-space-collapse: preserve;
+  text-wrap: nowrap;
+  text-align: start !important;
+  padding: initial;
+  border: initial;
+  overflow: hidden !important;
 }
 
 .sobmit {
-    border: .1vw solid #bdbdbd;
-    padding: .3vw 1.3vw;
-    background: none;
-    font-size: .6vw;
-    text-transform: uppercase;
-    font-family: sans-serif;
-    font-weight: 600;
-    color: rgb(93, 92, 92);
-    border-radius: .2vw;
-    transition: all .3s ease;
+  border: 0.1vw solid #bdbdbd;
+  padding: 0.3vw 1.3vw;
+  background: none;
+  font-size: 0.6vw;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-weight: 600;
+  color: rgb(93, 92, 92);
+  border-radius: 0.2vw;
+  transition: all 0.3s ease;
 }
 
 .sobmit:hover {
-    border: .1vw solid #bdbdbd;
-    padding: .3vw 1.3vw;
-    font-size: .6vw;
-    text-transform: uppercase;
-    font-family: sans-serif;
-    font-weight: 600;
-    color: rgb(233, 233, 233);
-    background-color:rgb(137, 135, 135) ;
+  border: 0.1vw solid #bdbdbd;
+  padding: 0.3vw 1.3vw;
+  font-size: 0.6vw;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-weight: 600;
+  color: rgb(233, 233, 233);
+  background-color: rgb(137, 135, 135);
 }
