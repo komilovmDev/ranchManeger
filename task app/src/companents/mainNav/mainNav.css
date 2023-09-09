@@ -117,3 +117,7 @@
 .none {
     display: none;
 }
+
+.mainNavModelCard .inError {
+    border: 2px solid red;
+}

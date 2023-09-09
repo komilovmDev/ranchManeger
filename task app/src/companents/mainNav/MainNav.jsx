@@ -2,23 +2,31 @@ import { BiSolidLock } from 'react-icons/bi'
 import './mainNav.css'
 import { useRef } from 'react'
 
-export default function MainNav({setTaskData , taskData }) {
+export default function MainNav({ setTaskData, taskData }) {
 
     const closeRef = useRef()
     const inputRef = useRef()
 
 
     function Addtack() {
-        const newTask = {
-            id: taskData.length + 1 ,
-            name: inputRef.current.value ,
-            users: [
-                {
-                    image: "https://img.a.transfermarkt.technology/portrait/big/8198-1685035469.png?lm=1"
-                }
-            ]
-        };
-        setTaskData([...taskData , newTask])
+        if (inputRef.current.value == '') {
+            closeRef.current.classList.add('none')
+            inputRef.current.classList.add('inError')
+        } else {
+            const newTask = {
+                id: taskData.length + 1,
+                name: inputRef.current.value,
+                users: [
+                    {
+                        image: "https://img.a.transfermarkt.technology/portrait/big/8198-1685035469.png?lm=1"
+                    }
+                ]
+            };
+
+            setTaskData([...taskData, newTask])
+            inputRef.current.value = null
+        }
+
     };
 
     return (
