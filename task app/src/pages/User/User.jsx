@@ -1,6 +1,7 @@
 import Navbar from "../../companents/navbar/Navbar";
 import './User.css';
 import ava from './../../assets/vod.png';
+import { Link } from "react-router-dom";
 
 
 export default function User() {
@@ -14,6 +15,7 @@ export default function User() {
                     </h1>
                 </div>
                 <div className="UserCardBox">
+                <Link to={"/UserPage"}>
                     <div className="UserCard">
                         <div className="boximgtype"></div>
                         <div className="Teaxt">
@@ -23,6 +25,7 @@ export default function User() {
                             <img src={ava} alt="" />
                         </div>
                     </div>
+                    </Link>
                 </div>
             </div>
         </>
