@@ -11,8 +11,8 @@ export default function MainNav({ setTaskData, taskData }) {
 
     function Addtack() {
         if (inputRef.current.value == '') {
-            closeRef.current.classList.add('none')
             inputRef.current.classList.add('inError')
+            closeRef.classList.add('none')
         } else {
             const newTask = {
                 id: taskData.length + 1,
@@ -25,6 +25,7 @@ export default function MainNav({ setTaskData, taskData }) {
             };
 
             setTaskData([...taskData, newTask])
+            inputRef.current.classList.remove('inError')
             inputRef.current.value = null
         }
 

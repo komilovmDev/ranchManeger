@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function User() {
     return (
         <>
-            <Navbar/>
+            <Navbar />
             <div className="User">
                 <div className="UserTitle">
                     <h1>
@@ -15,16 +15,16 @@ export default function User() {
                     </h1>
                 </div>
                 <div className="UserCardBox">
-                <Link to={"/UserPage"}>
-                    <div className="UserCard">
-                        <div className="boximgtype"></div>
-                        <div className="Teaxt">
-                            <p>Admin</p>
+                    <Link to={"/UserPage"}>
+                        <div className="UserCard">
+                            <div className="boximgtype"></div>
+                            <div className="Teaxt">
+                                <p>Admin</p>
+                            </div>
+                            <div className="UserImg">
+                                <img src={ava} alt="" />
+                            </div>
                         </div>
-                        <div className="UserImg">
-                            <img src={ava} alt="" />
-                        </div>
-                    </div>
                     </Link>
                 </div>
             </div>
