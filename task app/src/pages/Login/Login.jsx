@@ -15,8 +15,8 @@ export default function Login() {
                     </div>
                     <div className="LoginUp">
                         <div className='Email'>
-                            <label>Email:</label>
-                            <input type="email" name="Email" placeholder="Email:"/>
+                            <label>Username:</label>
+                            <input type="username" name="Username" placeholder="Username"/>
                         </div>
                         <div className='Password'>
                             <label>Password:</label>

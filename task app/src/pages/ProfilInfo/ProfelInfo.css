@@ -121,33 +121,33 @@
   width: 50%;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: flex-end;
   gap: 1.5vw;
   padding: 0 2vw;
 }
 
-/* .InputPhoto label {
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 6px 12px;
+.InputPhoto label {
+  border: 1px solid rgba(255, 68, 0, 0.507);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7vw;
+  height: 2vw;
   cursor: pointer;
-} */
+  font-size: .8vw;
+  color: rgba(255, 68, 0, 0.507);
+  transition: all .3s ease;
+  border-radius: 2vw;
+}
 
-input[type="file" i] {
-  appearance: none;
-  background: none;
-  cursor: default;
-  align-items: baseline;
-  color: inherit;
-  text-overflow: ellipsis;
-  white-space-collapse: preserve;
-  text-wrap: nowrap;
-  text-align: start !important;
-  padding: initial;
-  border: initial;
-  overflow: hidden !important;
+.InputPhoto label:hover {
+  background-color: rgba(255, 68, 0, 0.507);
+  color: white;
+}
+
+.InputPhoto p {
+  display: none;
 }
 
 .sobmit {
@@ -172,4 +172,17 @@ input[type="file" i] {
   font-weight: 600;
   color: rgb(233, 233, 233);
   background-color: rgb(137, 135, 135);
+}
+
+.NameText input {
+  padding: .7vw 5vw .7vw 1vw;
+  border: .1vw solid #bdbdbd;
+  border-radius: 1vw;
+  outline: none;
+}
+
+.AdressEmail input {
+  border: none;
+  outline: none;
+  color: black;
 }

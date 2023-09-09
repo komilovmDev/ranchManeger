@@ -48,7 +48,7 @@ export default function ProfelInfo() {
                             </div>
                                 <div className="InputPhoto">
                                     <label htmlFor="fileInput" className="custom-file-upload">
-                                        Image hare
+                                        Image 
                                     </label>
                                     <input
                                         type="file"
@@ -66,9 +66,7 @@ export default function ProfelInfo() {
                                 </p>
                             </div>
                             <div className="NameText">
-                                <p>
-                                    Muhammad Komilov
-                                </p>
+                                <input type="text" placeholder={"Muxammad Komilov"} />
                             </div>
                         </div>
                         <div className="PersonalAdress">
