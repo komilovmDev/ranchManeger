@@ -44,15 +44,6 @@ export default function MainNav({ setTaskData, taskData }) {
                     <div className="btns">
                         <button className='btns1'>Canel</button>
                         <button className='btns2' onClick={() => Addtack() + closeRef.current.classList.add('none')}>+ Create</button>
-                        <button className='close' onClick={() => closeRef.current.classList.add('none')}>X</button>
-                        <input type="text" placeholder="Add board title" />
-                        <button id='type'><BiSolidLock /><h5>Private</h5></button>
-                        <div className="btns">
-                            <button className='btns1'>Canel</button>
-                            <button className='onclickNon' onClick={() => closeRef.current.classList.add('none')}>
-                                <button className='btns2' onClick={() => Addtack()}>+ Create</button>
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
