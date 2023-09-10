@@ -9,31 +9,60 @@ import { useRef, useState } from 'react'
 export default function TaskInfo() {
 
     const inputRef = useRef()
+    const taskNameRef = useRef()
 
 
-    const [data , setData] = useState([
+
+    const [task, setTask] = useState([
         {
             id: 1,
-            name: "Website build",
+            name: "UKM frontend",
+            children: [
+                {
+                    id: 1,
+                    name: "Website build",
+                },
+                {
+                    id: 2,
+                    name: "Website build 2",
+                },
+                {
+                    id: 3,
+                    name: "Website build 3",
+                }
+            ]
         },
-        {
-            id: 2,
-            name: "Website build 2",
-        },
-        {
-            id: 3,
-            name: "Website build 3",
-        }
     ])
 
-    function AddTask() {
-        const newData = 
-            {
-                id: data.length + 1 ,
-                name: inputRef.current.value ,
+
+    function AddTaskMenu() {
+        if (taskNameRef.current.value !== "") {
+            const newData = {
+                id: task.length + 1,
+                name: taskNameRef.current.value,
+                children: []
             }
 
-        setData([...data , newData])
+            setTask([...task, newData])
+            taskNameRef.current.value = ""
+        }
+    }
+
+
+    function AddTask(taskItem) {
+        if (inputRef.current.value !== "") {
+            const newData = {
+                id: taskItem.children.length + 1,
+                name: inputRef.current.value,
+            };
+
+            const updatedTask = [...task];
+            taskItem.children.push(newData);
+            setTask(updatedTask);
+            inputRef.current.value = "";
+        } else {
+            inputRef.current.classList.add('inError');
+        }
     }
 
     return (
@@ -57,29 +86,40 @@ export default function TaskInfo() {
                 </div>
             </div>
             <div className="tasks">
-                <div className="taskCard">
-                    <div className="tasksNav">
-                        <div className="taskData">
-                            <p>28.02.2023 , 2:23</p>
-                        </div>
-                        <div className="taskSet">
-                            <button><GoKebabHorizontal /></button>
-                        </div>
-                    </div>
-                    {
-                        data.map(item => (
-                            <div className="taskInfoCard">
-                                <p>{item.name}</p>
-                                <div className="taskInfoCard__usersINfo">
-                                    <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
-                                    <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
+                {
+                    task.map(taskItem => (
+                        <div className="taskCard" key={taskItem.id}>
+                            <div className="tasksNav">
+                                <div className="taskData">
+                                    <p>{taskItem.name}</p>
+                                </div>
+                                <div className="taskSet">
+                                    <button><GoKebabHorizontal /></button>
                                 </div>
                             </div>
-                        ))
-                    }
-                    <div className="addMiniDesc">
-                        <input ref={inputRef} type="text" placeholder='Add another card' />
-                        <button onClick={AddTask}><BsPlusLg /></button>
+                            {
+                                taskItem.children.map(item => (
+                                    <div className="taskInfoCard">
+                                        <p>{item.name}</p>
+                                        <div className="taskInfoCard__usersINfo">
+                                            <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
+                                            <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                            <div className="addMiniDesc">
+                                <input ref={inputRef} type="text" placeholder='Add another card' />
+                                <button onClick={() => AddTask(taskItem)}><BsPlusLg /></button>
+                            </div>
+
+                        </div>
+                    ))
+                }
+                <div className="taskAddBtn">
+                    <div className="addMiniDesc" style={{ backgroundColor: "#F1F3F2" }}>
+                        <input ref={taskNameRef} type="text" placeholder='Add another list' />
+                        <button onClick={AddTaskMenu}><BsPlusLg /></button>
                     </div>
                 </div>
             </div>
