@@ -146,6 +146,12 @@
     gap: 10px;
 }
 
+.taskInfoCard:hover {
+    transition: 0.3s;
+    box-shadow: 2px 2px 10px 1px rgba(95, 95, 95, 0.267);
+    cursor: pointer;
+}
+
 .taskInfoCard p {
     font-size: 18px;
 }

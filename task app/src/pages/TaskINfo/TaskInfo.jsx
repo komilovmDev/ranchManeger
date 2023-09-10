@@ -112,7 +112,6 @@ export default function TaskInfo() {
                                 <input ref={inputRef} type="text" placeholder='Add another card' />
                                 <button onClick={() => AddTask(taskItem)}><BsPlusLg /></button>
                             </div>
-
                         </div>
                     ))
                 }
