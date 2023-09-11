@@ -134,6 +134,10 @@ export default function TaskInfo() {
                             <div ref={closeRef} className="TascInfMOdule none">
                                 <div className="TascInfMOduleCard">
                                     <button className='close' onClick={() => closeRef.current.classList.add('none')}>X</button>
+                                    <div className="TaskBtn">
+                                        <button className='btns1'>Canel</button>
+                                        <button className='btns2' onClick={() => Addtack() + closeRef.current.classList.add('none')}>+ Create</button>
+                                    </div>
                                 </div>
                             </div>
                             <div className="addMiniDesc">
