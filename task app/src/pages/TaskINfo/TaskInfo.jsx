@@ -117,13 +117,23 @@ export default function TaskInfo() {
                 <div className="profilNavLeft">
                     <div className="taskStatusSelect">
                         <button className='statusTaskBtn'>
-
-
-                            <Dropdown>
-                                <MenuButton><button><BiSolidLock /> <span>Private</span></button></MenuButton>
-                                <Menu className='dropMenu'>
-                                    <MenuItem className='dropBtn'>Rename</MenuItem>
-                                    <MenuItem className='dropBtn'>Delete this list</MenuItem>
+                            <Dropdown className='hello'>
+                                <MenuButton><button className='dropOnBtn'><BiSolidLock /> <span>Private</span></button></MenuButton>
+                                <Menu className='dropMenu1'>
+                                    <div className="tskSelectorTitle">
+                                        <h3>Visibility</h3>
+                                        <p>Choose who can see this board</p>
+                                    </div>
+                                    <MenuItem className='dropBtn'>
+                                        <ImEarth color='#61BD4F'/>
+                                        <span>Public</span>
+                                        <p>Anyone can see this board. Only board members can edit</p>
+                                    </MenuItem>
+                                    <MenuItem className='dropBtn'>
+                                        <BiSolidLock color='#EB5A46' />
+                                        <span>Private</span>
+                                        <p>Only board members can see and edit this board</p>
+                                    </MenuItem>
                                 </Menu>
                             </Dropdown>
                         </button>
@@ -186,15 +196,6 @@ export default function TaskInfo() {
                                             <div className="taskInfoCard__usersINfo">
                                                 <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
                                                 <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
-                                            </div>
-                                        </div>
-                                        <div ref={closeRef} className="TascInfMOdule none">
-                                            <div className="TascInfMOduleCard">
-                                                <button className='close' onClick={() => closeRef.current.classList.add('none')}>X</button>
-                                                <div className="TaskBtn">
-                                                    <button className='btns1'>Canel</button>
-                                                    <button className='btns2' onClick={() => Addtack() + closeRef.current.classList.add('none')}>+ Create</button>
-                                                </div>
                                             </div>
                                         </div>
                                         <div ref={closeRef} className="TascInfMOdule none1">

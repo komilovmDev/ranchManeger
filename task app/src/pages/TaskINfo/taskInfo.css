@@ -290,3 +290,52 @@
 .dropBtn:hover {
    background-color: #F2F2F2;
 }
+
+.hello {
+    height: 400px;
+}
+
+.dropOnBtn {
+    border: none;
+}
+
+.dropMenu1 {
+    background-color: white;
+    width: 300px;
+    height: auto;
+    padding: 10px;
+    border: 1px solid #E0E0E0;
+    border-radius: 10px;
+}
+
+.dropMenu1 .tskSelectorTitle {
+    margin-bottom: 15px;
+    padding: 0px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dropMenu1 .tskSelectorTitle h3 {
+    font-size: 18px;
+}
+
+.dropMenu1 .tskSelectorTitle p {
+    font-weight: 600;
+    color: #828282;
+}
+
+.dropMenu1 .dropBtn {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.red {
+    background-color: #FFE2DE;
+}
+
+.green {
+    background-color: #E2F7DF;
+}
