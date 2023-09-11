@@ -5,6 +5,11 @@ import { GoKebabHorizontal } from 'react-icons/go'
 import Navbar from '../../companents/navbar/Navbar'
 import './taskInfo.css'
 import { useRef, useState } from 'react'
+import { ImEarth } from 'react-icons/im'
+import { Menu } from '@mui/base/Menu';
+import { MenuButton } from '@mui/base/MenuButton';
+import { MenuItem } from '@mui/base/MenuItem';
+import { Dropdown } from '@mui/base/Dropdown';
 
 export default function TaskInfo() {
 
@@ -94,7 +99,37 @@ export default function TaskInfo() {
             <Navbar />
             <div className="ProfileNav">
                 <div className="profilNavLeft">
-                    <button className='statusTaskBtn'><BiSolidLock /> <span>Private</span></button>
+                    <div className="taskStatusSelect">
+                        <button className='statusTaskBtn'>
+
+                            
+                            <Dropdown>
+                                <MenuButton><button><BiSolidLock /> <span>Private</span></button></MenuButton>
+                                <Menu className='dropMenu'>
+                                    <MenuItem className='dropBtn'>Rename</MenuItem>
+                                    <MenuItem className='dropBtn'>Delete this list</MenuItem>
+                                </Menu>
+                            </Dropdown>
+                        </button>
+                        {/* <div className="tskSelector">
+                            <div className="tskSelectorTitle">
+                                <h3>Visibility</h3>
+                                <p>Choose who can see this board</p>
+                            </div>
+                            <div className="tskSelects">
+                                <button>
+                                    <ImEarth />
+                                    <span>Public</span>
+                                    <p>Anyone can see this board. Only board members can edit</p>
+                                </button>
+                                <button>
+                                    <BiSolidLock />
+                                    <span>Private</span>
+                                    <p>Only board members can see and edit this board</p>
+                                </button>
+                            </div>
+                        </div> */}
+                    </div>
                     <div className="userAdd">
                         <div className="userAdd__users">
                             <img src="https://img.a.transfermarkt.technology/portrait/big/8198-1685035469.png?lm=1" alt="" />
@@ -117,8 +152,14 @@ export default function TaskInfo() {
                                 <div className="taskData">
                                     <p>{taskItem.name}</p>
                                 </div>
-                                <div className="taskSet" onClick={() => setRef.current.classList.toggle('none1')}>
-                                    <button><GoKebabHorizontal /></button>
+                                <div className="taskSet">
+                                    <Dropdown>
+                                        <MenuButton><button><GoKebabHorizontal /></button></MenuButton>
+                                        <Menu className='dropMenu'>
+                                            <MenuItem className='dropBtn'>Rename</MenuItem>
+                                            <MenuItem className='dropBtn'>Delete this list</MenuItem>
+                                        </Menu>
+                                    </Dropdown>
                                 </div>
                             </div>
                             {
@@ -129,25 +170,21 @@ export default function TaskInfo() {
                                             <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
                                             <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
                                         </div>
+                                        <div ref={closeRef} className="TascInfMOdule none">
+                                            <div className="TascInfMOduleCard">
+                                                <button className='close' onClick={() => closeRef.current.classList.add('none')}>X</button>
+                                                <div className="TaskBtn">
+                                                    <button className='btns1'>Canel</button>
+                                                    <button className='btns2' onClick={() => Addtack() + closeRef.current.classList.add('none')}>+ Create</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 ))
                             }
-                            <div ref={closeRef} className="TascInfMOdule none">
-                                <div className="TascInfMOduleCard">
-                                    <button className='close' onClick={() => closeRef.current.classList.add('none')}>X</button>
-                                    <div className="TaskBtn">
-                                        <button className='btns1'>Canel</button>
-                                        <button className='btns2' onClick={() => Addtack() + closeRef.current.classList.add('none')}>+ Create</button>
-                                    </div>
-                                </div>
-                            </div>
                             <div className="addMiniDesc">
                                 <input ref={inputRef} type="text" placeholder='Add another card' />
                                 <button onClick={() => AddTask(taskItem)}><BsPlusLg /></button>
-                            </div>
-                            <div className="taskSetting none1" ref={setRef}>
-                                <button id='ts1'>Rename</button>
-                                <button id='ts2'>Delete this list</button>
                             </div>
                         </div>
                     ))
