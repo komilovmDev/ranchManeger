@@ -11,6 +11,7 @@ export default function TaskInfo() {
     const inputRef = useRef()
     const taskNameRef = useRef()
     const closeRef = useRef()
+    const setRef = useRef()
 
 
     const [task, setTask] = useState([
@@ -116,7 +117,7 @@ export default function TaskInfo() {
                                 <div className="taskData">
                                     <p>{taskItem.name}</p>
                                 </div>
-                                <div className="taskSet">
+                                <div className="taskSet" onClick={() => setRef.current.classList.toggle('none1')}>
                                     <button><GoKebabHorizontal /></button>
                                 </div>
                             </div>
@@ -143,6 +144,10 @@ export default function TaskInfo() {
                             <div className="addMiniDesc">
                                 <input ref={inputRef} type="text" placeholder='Add another card' />
                                 <button onClick={() => AddTask(taskItem)}><BsPlusLg /></button>
+                            </div>
+                            <div className="taskSetting none1" ref={setRef}>
+                                <button id='ts1'>Rename</button>
+                                <button id='ts2'>Delete this list</button>
                             </div>
                         </div>
                     ))
