@@ -10,7 +10,7 @@ export default function TaskInfo() {
 
     const inputRef = useRef()
     const taskNameRef = useRef()
-
+    const closeRef = useRef()
 
 
     const [task, setTask] = useState([
@@ -33,6 +33,29 @@ export default function TaskInfo() {
             ]
         },
     ])
+
+
+    function Addtack() {
+        if (inputRef.current.value == '') {
+            inputRef.current.classList.add('inError')
+            closeRef.classList.add('none')
+        } else {
+            const newTask = {
+                id: taskData.length + 1,
+                name: inputRef.current.value,
+                users: [
+                    {
+                        image: "https://img.a.transfermarkt.technology/portrait/big/8198-1685035469.png?lm=1"
+                    }
+                ]
+            };
+
+            setTaskData([...taskData, newTask])
+            inputRef.current.classList.remove('inError')
+            inputRef.current.value = null
+        }
+
+    }
 
 
     function AddTaskMenu() {
@@ -99,7 +122,7 @@ export default function TaskInfo() {
                             </div>
                             {
                                 taskItem.children.map(item => (
-                                    <div className="taskInfoCard">
+                                    <div className="taskInfoCard" onClick={() => closeRef.current.classList.remove('none')}>
                                         <p>{item.name}</p>
                                         <div className="taskInfoCard__usersINfo">
                                             <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
@@ -108,19 +131,23 @@ export default function TaskInfo() {
                                     </div>
                                 ))
                             }
-                            <div className="addMiniDesc">
-                                <input ref={inputRef} type="text" placeholder='Add another card' />
-                                <button onClick={() => AddTask(taskItem)}><BsPlusLg /></button>
+                            <div ref={closeRef} className="TascInfMOdule none">
+                                <div className="TascInfMOduleCard">
+                                    <button className='close' onClick={() => closeRef.current.classList.add('none')}>X</button>
+                                    <input ref={inputRef} type="text" placeholder="Add board title" />
+                                </div>
+                                <div className="TaskGlavBox">
+                        <div className="TaskGlavBoxRight">
+                            
+                        </div>
+                        <div className="TaskGlavBoxLeft">
+
+                        </div>
+                    </div>
                             </div>
                         </div>
                     ))
                 }
-                <div className="taskAddBtn">
-                    <div className="addMiniDesc" style={{ backgroundColor: "#F1F3F2" }}>
-                        <input ref={taskNameRef} type="text" placeholder='Add another list' />
-                        <button onClick={AddTaskMenu}><BsPlusLg /></button>
-                    </div>
-                </div>
             </div>
         </>
     )
