@@ -199,3 +199,16 @@
     align-items: center;
     justify-content: center;
 }
+
+.TascInfMOdule {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00000061;
+    position: absolute;
+    top: auto;
+    left: auto;
+    
+}
