@@ -214,7 +214,7 @@
 }
 
 .TascInfMOdule {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -226,7 +226,7 @@
     z-index: 100;
 }
 
-.none {
+.none1 {
     display: none;
 }
 
@@ -271,3 +271,4 @@
 .none1 {
     display: none;
 }
+
