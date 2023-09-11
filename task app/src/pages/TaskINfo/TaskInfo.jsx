@@ -8,9 +8,19 @@ import Navbar from '../../companents/navbar/Navbar'
 import './taskInfo.css'
 import { useRef, useState } from 'react'
 import ava from './../../assets/vod.png';
-
-
+import { ImEarth } from 'react-icons/im'
+import { Menu } from '@mui/base/Menu';
+import { MenuButton } from '@mui/base/MenuButton';
+import { MenuItem } from '@mui/base/MenuItem';
+import { Dropdown } from '@mui/base/Dropdown';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 export default function TaskInfo() {
+
+    const top100Films = [
+        { label: 'Muhammad Komilov', year: 1994 },
+        { label: 'Lionel Ranaldo', year: 1972 },
+    ]
 
     const inputRef = useRef()
     const taskNameRef = useRef()
@@ -18,6 +28,8 @@ export default function TaskInfo() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [imageSrc, setImageSrc] = useState(null);
     const setRef = useRef()
+    const [editingTaskName, setEditingTaskName] = useState(""); // Yangi o'zgaruvchi
+    const changeRef = useRef()
 
 
     const handleFileChange = (e) => {
@@ -113,14 +125,49 @@ export default function TaskInfo() {
             <Navbar />
             <div className="ProfileNav">
                 <div className="profilNavLeft">
-                    <button className='statusTaskBtn'><BiSolidLock /> <span>Private</span></button>
+                    <div className="taskStatusSelect">
+                        <button className='statusTaskBtn'>
+                            <Dropdown className='hello'>
+                                <MenuButton><button className='dropOnBtn'><BiSolidLock /> <span>Private</span></button></MenuButton>
+                                <Menu className='dropMenu1'>
+                                    <div className="tskSelectorTitle">
+                                        <h3>Visibility</h3>
+                                        <p>Choose who can see this board</p>
+                                    </div>
+                                    <MenuItem className='dropBtn'>
+                                        <ImEarth color='#61BD4F' />
+                                        <span>Public</span>
+                                        <p>Anyone can see this board. Only board members can edit</p>
+                                    </MenuItem>
+                                    <MenuItem className='dropBtn'>
+                                        <BiSolidLock color='#EB5A46' />
+                                        <span>Private</span>
+                                        <p>Only board members can see and edit this board</p>
+                                    </MenuItem>
+                                </Menu>
+                            </Dropdown>
+                        </button>
+                    </div>
                     <div className="userAdd">
                         <div className="userAdd__users">
                             <img src="https://img.a.transfermarkt.technology/portrait/big/8198-1685035469.png?lm=1" alt="" />
                             <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
                         </div>
                         <div className="userAdd__userAdd">
-                            <button><BsPlusLg /></button>
+                            <Dropdown>
+                                <MenuButton><button><BsPlusLg /></button></MenuButton>
+                                <Menu>
+                                    <MenuItem>
+                                        <Autocomplete
+                                            disablePortal
+                                            id="combo-box-demo"
+                                            options={top100Films}
+                                            sx={{ width: 300 }}
+                                            renderInput={(params) => <TextField {...params} label="Users" />}
+                                        />
+                                    </MenuItem>
+                                </Menu>
+                            </Dropdown>
                         </div>
                     </div>
                 </div>
@@ -134,10 +181,39 @@ export default function TaskInfo() {
                         <div className="taskCard" key={taskItem.id}>
                             <div className="tasksNav">
                                 <div className="taskData">
-                                    <p>{taskItem.name}</p>
+                                    {taskItem.id === editingTaskName ? (
+                                        <input
+                                            type="text"
+                                            placeholder={taskItem.name}
+                                            ref={changeRef}
+                                        />
+                                    ) : (
+                                        <p>{taskItem.name}</p>
+                                    )}
                                 </div>
-                                <div className="taskSet" onClick={() => setRef.current.classList.toggle('none1')}>
-                                    <button><GoKebabHorizontal /></button>
+                                <div className="taskSet">
+                                    <Dropdown>
+                                        <MenuButton>
+                                            <button>
+                                                {
+                                                    taskItem.id === editingTaskName ? (
+                                                        <button onClick={() => setEditingTaskName(changeRef.current.value)}>Save</button>
+                                                    ) : (
+                                                        <GoKebabHorizontal />
+                                                    )
+                                                }
+                                            </button>
+                                        </MenuButton>
+                                        <Menu className="dropMenu">
+                                            <MenuItem
+                                                className="dropBtn"
+                                                onClick={() => setEditingTaskName(taskItem.id)}
+                                            >
+                                                Rename
+                                            </MenuItem>
+                                            <MenuItem className="dropBtn">Delete this list</MenuItem>
+                                        </Menu>
+                                    </Dropdown>
                                 </div>
                             </div>
                             {
@@ -190,6 +266,33 @@ export default function TaskInfo() {
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                      <div className="TaskInfLabel">
+                                                            <label> <MdDescription />    <input type="text" /></label>
+                                                            <div className="btnLabel">
+                                                                <button><BsPlusLg /> Edit</button>
+                                                            </div>
+                                                        </div>
+                                                        <div className="TaskInfLabel">
+                                                            <label> <MdDescription />    <input type="text" /></label>
+                                                            <div className="btnLabel">
+                                                                <button><BsPlusLg /> Edit</button>
+                                                            </div>
+                                                        </div>
+                                                        <div className="TaskInfFile">
+                                                            <div className="TaskInfFileMiniBox"></div>
+                                                            <div className="TaskInfFileT">
+                                                                <p>September or 11</p>
+                                                                <div className='TaskInfoInpute'>
+                                                                    <label htmlFor="fileInput" className="custom-file-upload">
+                                                                        Image
+                                                                    </label>
+                                                                    <input type="file" id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
+                                                                    {selectedFile && <p>Selected file: {selectedFile.name}</p>}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="TaskInfRight">
                                                     </div>
                                                 </div>
                                                 <div className="TaskInfRight">
@@ -203,10 +306,6 @@ export default function TaskInfo() {
                             <div className="addMiniDesc">
                                 <input ref={inputRef} type="text" placeholder='Add another card' />
                                 <button onClick={() => AddTask(taskItem)}><BsPlusLg /></button>
-                            </div>
-                            <div className="taskSetting none1" ref={setRef}>
-                                <button id='ts1'>Rename</button>
-                                <button id='ts2'>Delete this list</button>
                             </div>
                         </div>
                     ))
