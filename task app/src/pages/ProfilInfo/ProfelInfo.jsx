@@ -28,22 +28,30 @@ export default function ProfelInfo() {
 
     const handleLogout = async () => {
         const token = localStorage.getItem('accessToken');
-
+    
+        // Check if the user is authenticated (has a token)
+        if (!token) {
+            console.error('User is not authenticated');
+            // You can redirect the user to the login page or take other actions here
+            return;
+        }
+    
         try {
             // Server manzili va so'rov turi to'g'ri bo'lishi kerak
             await axios.post('http://manager.zafarr.uz/logout/', null, {
                 headers: { Authorization: `Bearer ${token}` },
             });
-
+    
             // Remove the token from localStorage
             localStorage.removeItem('accessToken');
-
+    
             // Redirect or perform any other necessary action upon successful logout
             // Masalan, sahifani yangilang yoki boshqa sahifaga yo'naltirish
         } catch (err) {
             console.error('Logout failed', err);
         }
     };
+    
 
     return (
         <>
