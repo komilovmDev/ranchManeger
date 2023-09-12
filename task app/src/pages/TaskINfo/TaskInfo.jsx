@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-key */
-import { HiMiniArrowLongRight } from 'react-icons/hi2'
 import { BiSolidLock } from 'react-icons/bi'
 import { BsPlusLg } from 'react-icons/bs'
 import { MdDescription } from 'react-icons/md'
@@ -7,7 +6,9 @@ import { GoKebabHorizontal } from 'react-icons/go'
 import Navbar from '../../companents/navbar/Navbar'
 import './taskInfo.css'
 import { useRef, useState } from 'react'
-import { ImEarth } from 'react-icons/im'
+import ava from './../../assets/vod.png';
+import { ImEarth } from 'react-icons/im';
+import { HiPencil } from 'react-icons/hi';
 import { Menu } from '@mui/base/Menu';
 import { MenuButton } from '@mui/base/MenuButton';
 import { MenuItem } from '@mui/base/MenuItem';
@@ -15,6 +16,8 @@ import { Dropdown } from '@mui/base/Dropdown';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Chat from '../../companents/chat/Chat'
+
+
 
 export default function TaskInfo() {
 
@@ -31,6 +34,7 @@ export default function TaskInfo() {
     const setRef = useRef()
     const [editingTaskName, setEditingTaskName] = useState(""); // Yangi o'zgaruvchi
     const changeRef = useRef()
+
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -228,31 +232,48 @@ export default function TaskInfo() {
                                         </div>
                                         <div ref={closeRef} className="TascInfMOdule none1">
                                             <div className="TascInfMOduleCard">
-                                                <button className='close' onClick={() => closeRef.current.classList.add('none1')}>X</button>
+                                                <div className='CloseBox'>
+                                                    <button className='close' onClick={() => closeRef.current.classList.add('none1')}>X</button>
+                                                </div>
                                                 <div className="TaskInfBox">
                                                     <div className="TaskInfBoxLeft">
-                                                        <div className="TaskInfLabel">
-                                                            <label> <MdDescription />    <input type="text" /></label>
-                                                            <div className="btnLabel">
-                                                                <button><BsPlusLg /> Edit</button>
+                                                        <div className="TaskInfBoxLeftGalvLable">
+                                                            <div className='GlavLableTitle'>
+                                                                <h1>
+                                                                    Website buil
+                                                                </h1>
+                                                                <button>
+                                                                    <HiPencil />
+                                                                </button>
                                                             </div>
+                                                            <label> in list <input type="text" value='28.02.2013, 2:52' /></label>
                                                         </div>
-                                                        <div className="TaskInfLabel">
-                                                            <label> <MdDescription />    <input type="text" /></label>
-                                                            <div className="btnLabel">
-                                                                <button><BsPlusLg /> Edit</button>
+                                                        <div className="TaskInfoLabelBox">
+                                                            <div className="TaskInfLabel">
+                                                                <label> <MdDescription className='Description' />    <input type="text" placeholder='Description' /></label>
+                                                                <div className="btnLabel">
+                                                                    <button><BsPlusLg /> Edit</button>
+                                                                </div>
+                                                            </div>
+                                                            <div className="TaskInfLabel">
+                                                                <label> <MdDescription className='Description' />    <input type="text" placeholder=' Attachment' /></label>
+                                                                <div className="btnLabel">
+                                                                    <button><BsPlusLg /> Edit</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div className="TaskInfFile">
-                                                            <div className="TaskInfFileMiniBox"></div>
+                                                            <div className="TaskInfFileMiniBox"><img src={imageSrc || ava} alt="User's photo" /></div>
                                                             <div className="TaskInfFileT">
                                                                 <p>September or 11</p>
-                                                                <div className='TaskInfoInpute'>
-                                                                    <label htmlFor="fileInput" className="custom-file-upload">
-                                                                        Image
-                                                                    </label>
-                                                                    <input type="file" id="fileInput" style={{ display: 'none' }} onChange={handleFileChange} />
-                                                                    {selectedFile && <p>Selected file: {selectedFile.name}</p>}
+                                                                <div className="TaskInfFileBtn">
+                                                                    <div className='TaskInfFileBtnBox'>
+                                                                        <label htmlFor="fileInput" className="custom-file-upload">
+                                                                            Downdload
+                                                                        </label>
+                                                                        <input type="file" id="fileInput" placeholder='File name' style={{ display: 'none' }} onChange={handleFileChange} />
+                                                                        {selectedFile && <p>Selected file: {selectedFile.name}</p>}
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -279,7 +300,7 @@ export default function TaskInfo() {
                         <button onClick={AddTaskMenu}><BsPlusLg /></button>
                     </div>
                 </div>
-            </div>
+            </div >
         </>
     )
 }
