@@ -270,6 +270,68 @@
   display: none;
 }
 
+.CloseBox {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.close {
+  border: none;
+  outline: none;
+  background-color: rgba(255, 68, 0, 0.645);
+  width: 50px;
+  height: 35px;
+  cursor: pointer;
+  color: white;
+  border-radius: 5px;
+}
+
+.TaskInfBoxLeftGalvLable {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.GlavLableTitle {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.GlavLableTitle button {
+  outline: none;
+  border: none;
+  background: none;
+  color: #bdbdbd;
+  font-size: 18px;
+}
+
+.GlavLableTitle h1 {
+  font-size: 20px;
+  font-family: sans-serif;
+  font-weight: 400;
+}
+
+.TaskInfBoxLeftGalvLable label {
+  display: flex;
+  gap: 10px;
+  font-size: 14px;
+  font-family: sans-serif;
+  color: #bdbdbd;
+  font-weight: 600;
+}
+
+.TaskInfBoxLeftGalvLable label input {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 14px;
+  font-family: sans-serif;
+  font-weight: 700;
+}
 
 .TaskInfLabel {
   display: flex;
@@ -279,6 +341,7 @@
 .TaskInfLabel label {
   display: flex;
   align-items: center;
+  gap: 5px;
 }
 
 .TaskInfLabel input {
@@ -308,15 +371,15 @@
 
 .TaskInfFileMiniBox {
   width: 100px;
-  height: 100px;
+  height: 60px;
   background-color: #e0e0e0;
   border-radius: 10px;
 }
 
 .TaskInfFileMiniBox img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .TaskInfoLabelBox {
@@ -350,70 +413,98 @@
 }
 
 .dropMenu {
-    border: 1px solid #E0E0E0;
-    display: flex;
-    background-color: #FFFFFF;
-    border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  background-color: #ffffff;
+  border-radius: 10px;
 }
 
 .dropBtn {
-    padding: 10px 10px;
-    cursor: pointer;
-    color: #828282;
-    font-size: 16px;
-    font-weight: 500;
+  padding: 10px 10px;
+  cursor: pointer;
+  color: #828282;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .dropBtn:hover {
-   background-color: #F2F2F2;
+  background-color: #f2f2f2;
 }
 
 .hello {
-    height: 400px;
+  height: 400px;
 }
 
 .dropOnBtn {
-    border: none;
+  border: none;
 }
 
 .dropMenu1 {
-    background-color: white;
-    width: 300px;
-    height: auto;
-    padding: 10px;
-    border: 1px solid #E0E0E0;
-    border-radius: 10px;
+  background-color: white;
+  width: 300px;
+  height: auto;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
 }
 
 .dropMenu1 .tskSelectorTitle {
-    margin-bottom: 15px;
-    padding: 0px 5px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  margin-bottom: 15px;
+  padding: 0px 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .dropMenu1 .tskSelectorTitle h3 {
-    font-size: 18px;
+  font-size: 18px;
 }
 
 .dropMenu1 .tskSelectorTitle p {
-    font-weight: 600;
-    color: #828282;
+  font-weight: 600;
+  color: #828282;
 }
 
 .dropMenu1 .dropBtn {
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .red {
-    background-color: #FFE2DE;
+  background-color: #ffe2de;
 }
 
 .green {
-    background-color: #E2F7DF;
+  background-color: #e2f7df;
 }
 
+.TaskInfFile {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.TaskInfFileT {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.TaskInfFileT p {
+  color: #bdbdbd;
+  font-size: 10.4px;
+  font-style: normal;
+  font-weight: 500;
+}
+
+.TaskInfFileBtnBox label {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 10px;
+  border-radius: 10px;
+  font-family: sans-serif;
+  font-weight: 600;
+  padding: 7px 10px;
+  border: 1px solid #BDBDBD;
+}
