@@ -14,6 +14,7 @@ import { MenuItem } from '@mui/base/MenuItem';
 import { Dropdown } from '@mui/base/Dropdown';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import Chat from '../../companents/chat/Chat'
 
 export default function TaskInfo() {
 
@@ -127,7 +128,7 @@ export default function TaskInfo() {
                     <div className="taskStatusSelect">
                         <button className='statusTaskBtn'>
                             <Dropdown className='hello'>
-                                <MenuButton><button className='dropOnBtn'><BiSolidLock /> <span>Private</span></button></MenuButton>
+                                <MenuButton className='GlavBtn'><button className='dropOnBtn'><BiSolidLock /> <span>Private</span></button></MenuButton>
                                 <Menu className='dropMenu1'>
                                     <div className="tskSelectorTitle">
                                         <h3>Visibility</h3>
@@ -257,7 +258,7 @@ export default function TaskInfo() {
                                                         </div>
                                                     </div>
                                                     <div className="TaskInfRight">
-
+                                                        
                                                     </div>
                                                 </div>
                                             </div>

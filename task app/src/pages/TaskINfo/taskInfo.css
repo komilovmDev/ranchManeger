@@ -295,8 +295,16 @@
     height: 400px;
 }
 
+.GlavBtn {
+    width: 100%;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
 .dropOnBtn {
     border: none;
+    cursor: pointer;
 }
 
 .dropMenu1 {
