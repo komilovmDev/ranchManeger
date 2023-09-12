@@ -2,28 +2,49 @@ import Navbar from "../../companents/navbar/Navbar";
 import './ProfelInfo.css'
 import ava from './../../assets/vod.png';
 import { useState } from "react";
+import axios from "axios";
 
 export default function ProfelInfo() {
 
 
     const [selectedFile, setSelectedFile] = useState(null);
     const [imageSrc, setImageSrc] = useState(null);
-  
+
     const handleFileChange = (e) => {
-      const file = e.target.files[0];
-  
-      if (file) {
-        const reader = new FileReader();
-  
-        reader.onload = (event) => {
-          const imageUrl = event.target.result;
-          setSelectedFile(file);
-          setImageSrc(imageUrl);
-        };
-  
-        reader.readAsDataURL(file);
-      }
+        const file = e.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                const imageUrl = event.target.result;
+                setSelectedFile(file);
+                setImageSrc(imageUrl);
+            };
+
+            reader.readAsDataURL(file);
+        }
     };
+
+    const handleLogout = async () => {
+        const token = localStorage.getItem('accessToken');
+
+        try {
+            // Server manzili va so'rov turi to'g'ri bo'lishi kerak
+            await axios.post('http://manager.zafarr.uz/logout/', null, {
+                headers: { Authorization: `Bearer ${token}` },
+            });
+
+            // Remove the token from localStorage
+            localStorage.removeItem('accessToken');
+
+            // Redirect or perform any other necessary action upon successful logout
+            // Masalan, sahifani yangilang yoki boshqa sahifaga yo'naltirish
+        } catch (err) {
+            console.error('Logout failed', err);
+        }
+    };
+
     return (
         <>
             <div className="ProfelInfo">
@@ -84,6 +105,7 @@ export default function ProfelInfo() {
                                     komilovm.dev@gmail.com
                                 </p>
                             </div>
+                            <button onClick={handleLogout}>LogOut</button>
                         </div>
                     </div>
                 </div>
