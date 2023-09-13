@@ -1,12 +1,10 @@
-import Navbar from "../../companents/navbar/Navbar";
-import './ProfelInfo.css'
+import './ProfelInfo.css';
 import ava from './../../assets/vod.png';
 import { useState } from "react";
 import axios from "axios";
+import Navbar from '../../companents/navbar/Navbar'
 
 export default function ProfelInfo() {
-
-
     const [selectedFile, setSelectedFile] = useState(null);
     const [imageSrc, setImageSrc] = useState(null);
 
@@ -26,32 +24,11 @@ export default function ProfelInfo() {
         }
     };
 
-    const handleLogout = async () => {
-        const token = localStorage.getItem('accessToken');
-
-        // Check if the user is authenticated (has a token)
-        if (!token) {
-            console.error('User is not authenticated');
-            // You can redirect the user to the login page or take other actions here
-            return;
-        }
-
-        try {
-            // Server manzili va so'rov turi to'g'ri bo'lishi kerak
-            await axios.post('http://manager.zafarr.uz/logout/', null, {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-
-            // Remove the token from localStorage
-            localStorage.removeItem('accessToken');
-
-            // Redirect or perform any other necessary action upon successful logout
-            // Masalan, sahifani yangilang yoki boshqa sahifaga yo'naltirish
-        } catch (err) {
-            console.error('Logout failed', err);
-        }
+    const handleLogout = () => {
+        // Remove the token from localStorage
+        localStorage.removeItem('accessToken');
     };
-
+    
 
     return (
         <>
@@ -59,16 +36,12 @@ export default function ProfelInfo() {
                 <Navbar />
                 <div className="PersolalContainer">
                     <div className="PersonalTitle">
-                        <h1>
-                            Personal Info
-                        </h1>
+                        <h1>Personal Info</h1>
                     </div>
                     <div className="PersonalInfoBox">
                         <div className="PersonalPhoto">
                             <div className="NamePhoto">
-                                <p>
-                                    PHOTO
-                                </p>
+                                <p>PHOTO</p>
                             </div>
                             <div className="ImgPhoto">
                                 <div className="ImgPhotoBox">
@@ -77,9 +50,7 @@ export default function ProfelInfo() {
                             </div>
                             <div className="InputPhoto">
                                 <div>
-                                    <label htmlFor="fileInput" className="custom-file-upload">
-                                        Image
-                                    </label>
+                                    <label htmlFor="fileInput" className="custom-file-upload">Image</label>
                                     <input
                                         type="file"
                                         id="fileInput"
@@ -92,31 +63,23 @@ export default function ProfelInfo() {
                         </div>
                         <div className="PersonalName">
                             <div className="NameName">
-                                <p>
-                                    NAME
-                                </p>
+                                <p>NAME</p>
                             </div>
                             <div className="NameText">
-                                <p>
-                                    Muhammad Komilov
-                                </p>
+                                <p>Muhammad Komilov</p>
                             </div>
                         </div>
                         <div className="PersonalAdress">
                             <div className="AdressName">
-                                <p>
-                                    ADDRESS
-                                </p>
+                                <p>ADDRESS</p>
                             </div>
                             <div className="AdressEmail">
-                                <p>
-                                    komilovm.dev@gmail.com
-                                </p>
+                                <p>komilovm.dev@gmail.com</p>
+                            </div>
+                            <div className="LogAut">
+                                <button onClick={handleLogout}>LogOut</button>
                             </div>
                         </div>
-                    </div>
-                    <div className="LogAut">
-                        <button onClick={handleLogout}>LogOut</button>
                     </div>
                 </div>
             </div>
