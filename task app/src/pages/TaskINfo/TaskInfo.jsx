@@ -263,23 +263,17 @@ export default function TaskInfo() {
                                                             </div>
                                                         </div>
                                                         <div className="TaskInfFile">
-                                                            <div className="TaskInfFileMiniBox"><img src={imageSrc || ava} alt="User's photo" /></div>
                                                             <div className="TaskInfFileT">
-                                                                <p>September or 11</p>
                                                                 <div className="TaskInfFileBtn">
-                                                                    <div className='TaskInfFileBtnBox'>
-                                                                        <label htmlFor="fileInput" className="custom-file-upload">
-                                                                            Downdload
-                                                                        </label>
-                                                                        <input type="file" id="fileInput" placeholder='File name' style={{ display: 'none' }} onChange={handleFileChange} />
-                                                                        {selectedFile && <p>Selected file: {selectedFile.name}</p>}
+                                                                    <div className="CommentInfo">
+                                                                        <Chat />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div className="TaskInfRight">
-                                                        
+
                                                     </div>
                                                 </div>
                                             </div>

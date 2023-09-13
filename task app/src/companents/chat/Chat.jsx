@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import './Chat.css';
+import img from './../../assets/vod.png';
 class Chat extends Component {
   constructor(props) {
     super(props);
@@ -21,7 +22,7 @@ class Chat extends Component {
 
   sendMessage = () => {
     const { newMessage, selectedFile, messages } = this.state;
-    
+
     const newMessageObj = {
       text: newMessage,
       file: selectedFile,
@@ -51,28 +52,30 @@ class Chat extends Component {
 
   render() {
     return (
-      <div>
+      <div className='ChatInfo'>
         <div className="chat-box">
           {this.state.messages.map((message, index) => (
             <div key={index} className="message">
-              {message.text}
-              {message.file && (
-                <div>
-                  Fayl: <a href={this.state.fileUrl} target="_blank" rel="noopener noreferrer">{message.file.name}</a>
+              <div className="user-name">
+                <img src={img} alt="img" />
+                <div className="TextComment">
+                  <p>Mukhammad Komilov</p>
+                  {message.text}
+                  {message.file && (
+                    <div>
+                      <a href={this.state.fileUrl} target="_blank" rel="noopener noreferrer">{message.file.name}</a>
+                    </div>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           ))}
         </div>
 
         <div className="message-input">
-          <input
-            type="text"
-            placeholder="Xabar kiritish..."
-            value={this.state.newMessage}
-            onChange={this.handleMessageChange}
-          />
-          <input type="file" onChange={this.handleFileChange} />
+          <img src={img} alt="img" />
+          <input className='Habar' type="text" placeholder="Xabar kiritish..." value={this.state.newMessage} onChange={this.handleMessageChange} />
+          <input className='HabarFile' type="file" onChange={this.handleFileChange} />
           <button onClick={this.sendMessage}>Yuborish</button>
         </div>
       </div>
