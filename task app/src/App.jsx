@@ -12,23 +12,27 @@ import { useEffect } from 'react';
 function App() {
 
   const token = localStorage.getItem('accessToken');
+  const navigate = useNavigate()
 
-  if (token) {
-    return (
-      <>
-        <BrowserRouter>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/Profil' element={<ProfelInfo />} />
-            <Route path='/user' element={<User />} />
-            <Route path='/TaskInfo' element={<TaskInfo />} />
-            <Route path='/UserPage' element={<UserPage />} />
-          </Routes>
-        </BrowserRouter>
-      </>
-    )
-  }
+  useEffect(() => {
+      if (!token) {
+          navigate('/login')
+      }
+  }, [token])
+
+  return (
+    <>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/Profil' element={<ProfelInfo />} />
+          <Route path='/user' element={<User />} />
+          <Route path='/TaskInfo' element={<TaskInfo />} />
+          <Route path='/UserPage' element={<UserPage />} />
+        </Routes>
+    </>
+  )
+
 
 }
 

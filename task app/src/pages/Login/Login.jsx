@@ -13,16 +13,21 @@ export default function Login() {
         e.preventDefault(); // Formani serverga yuborishni oldini oladi
 
         try {
-            const response = await axios.post('http://manager.zafarr.uz/login/', {
+            const response = await axios.post('http://manager.zafarr.uz/token/', {
                 username: username,
                 password: password,
             });
-            console.log('Login successful');
-            const token = response.data.tokens.access;
-            localStorage.setItem('accessToken', token);
-            navigate('/');
+
+            if (response.data.access) {
+                console.log('Login successful');
+                const token = response.data.access;
+                localStorage.setItem('accessToken', token);
+                navigate('/');
+            } else {
+                console.error('Login failed: Invalid response format');
+            }
         } catch (error) {
-            console.error('Login failed:', error.response.data);
+            console.error('Login failed:', error.response?.data || error.message);
         }
     };
 

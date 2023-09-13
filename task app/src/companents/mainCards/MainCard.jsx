@@ -7,7 +7,7 @@ export default function MainCard({item}) {
             <div className="mainCardImg">
                 <img src={item.image} alt="" />
             </div>
-            <h4>{item.name}</h4>
+            <h4>{item.username}</h4>
         </div>
     )
 }
