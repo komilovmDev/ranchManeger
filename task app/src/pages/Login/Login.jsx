@@ -23,7 +23,7 @@ export default function Login() {
 
         try {
             // Create the POST request
-            const response = await axios.post('http://manager.zafarr.uz/login/', user, {
+            const response = await axios.post('http://manager.zafarr.uz/token/', user, {
                 headers: { 'Content-Type': 'application/json' },
                 withCredentials: true, // This is set correctly within the object
             });
