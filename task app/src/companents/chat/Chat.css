@@ -1,0 +1,93 @@
+.ChatInfo {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1vw;
+  font-family: sans-serif;
+}
+
+.chat-box {
+  width: 100%;
+  height: 15vw;
+  overflow-y: auto;
+}
+
+.user-name {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 3vw;
+  gap: 0.5vw;
+  margin-top: 2vw;
+  padding-bottom: 1vw;
+  border-bottom: 0.1vw solid rgba(255, 68, 0, 0.562);
+  font-size: 1.1vw;
+}
+
+.user-name img {
+  width: 3vw;
+  height: 3vw;
+  border-bottom: 0.1px solid rgba(128, 128, 128, 0.76);
+  border-radius: 2vw;
+  -webkit-box-shadow: 0px 0px 44px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 0px 0px 44px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 0px 0px 44px 0px rgba(34, 60, 80, 0.2);
+}
+
+.user-name p {
+  color: rgb(62, 61, 61);
+  font-family: sans-serif;
+  font-weight: 700;
+}
+
+.TextComment {
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  gap: 0.5vw;
+  width: 90%;
+}
+
+.TextComment p {
+  display: flex;
+  word-wrap: break-word;
+}
+
+.message-input {
+  margin-top: 2.5vw;
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+}
+
+.message-input img {
+  width: 4vw;
+  height: 4vw;
+}
+
+.Habar {
+  width: 15vw;
+  height: 3vw;
+  outline: none;
+  border-radius: 2.5vw;
+  border: 0.1vw solid grey;
+  padding: 1vw;
+  display: flex;
+}
+
+.chat-box::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(241, 0, 0, 0.3);
+  border-radius: 1vw;
+  background-color: #f5f5f5;
+}
+
+.chat-box::-webkit-scrollbar {
+  width: 0.3vw;
+  background-color: #f5f5f5;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(255, 81, 0, 0.872);
+  background-color: rgba(255, 81, 0, 0.872);
+}
+
