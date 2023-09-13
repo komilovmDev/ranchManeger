@@ -1,5 +1,5 @@
 .PersolalContainer {
-  width: 99vw;
+  width: 98vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -169,4 +169,28 @@
   font-weight: 600;
   color: rgb(233, 233, 233);
   background-color: rgb(137, 135, 135);
+}
+
+.LogAut {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.LogAut button{
+  outline: none;
+  border: .1vw solid rgba(255, 68, 0, 0.466);
+  padding: .5vw 2vw;
+  background: inherit;
+  border-radius: .5vw;
+  color: rgba(255, 68, 0, 0.466);
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.LogAut button:hover {
+  background: rgba(255, 68, 0, 0.466);
+  color: white;
 }
