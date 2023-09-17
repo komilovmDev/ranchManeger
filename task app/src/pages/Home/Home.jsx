@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { useEffect, useState } from "react";
 import MainCard from "../../companents/mainCards/MainCard";
 import MainNav from "../../companents/mainNav/MainNav";

@@ -60,7 +60,7 @@ class Chat extends Component {
                 <img src={img} alt="img" />
                 <div className="TextComment">
                   <p>Mukhammad Komilov</p>
-                  {message.text}
+                  <p id='text'>{message.text}</p>
                   {message.file && (
                     <div>
                       <a href={this.state.fileUrl} target="_blank" rel="noopener noreferrer">{message.file.name}</a>

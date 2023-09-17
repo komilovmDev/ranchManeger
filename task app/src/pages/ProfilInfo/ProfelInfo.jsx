@@ -28,7 +28,7 @@ export default function ProfelInfo() {
         localStorage.removeItem('accessToken');
         window.location.reload()
     };
-    
+
 
     return (
         <>
@@ -76,10 +76,10 @@ export default function ProfelInfo() {
                             <div className="AdressEmail">
                                 <p>komilovm.dev@gmail.com</p>
                             </div>
-                            <div className="LogAut">
-                                <button onClick={handleLogout}>LogOut</button>
-                            </div>
                         </div>
+                    </div>
+                    <div className="LogAut">
+                        <button onClick={handleLogout}>LogOut</button>
                     </div>
                 </div>
             </div>

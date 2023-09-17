@@ -8,6 +8,7 @@
 .mainNav h5 {
     font-size: 18px;
     letter-spacing: 0.2px;
+    color: #FF8B36;
 }
 
 .mainNav button {
@@ -120,4 +121,26 @@
 
 .mainNavModelCard .inError {
     border: 2px solid red;
+}
+
+.PrivatBtn {
+    width: 100%;
+    outline: none;
+    border: none;
+    background: rgba(255, 0, 0, 0.338);
+    height: 2vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.PrivatOnBtn {
+    outline: none;
+    border: none;
+    background: none;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    color: #ffff;
 }
