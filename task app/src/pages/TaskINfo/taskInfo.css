@@ -96,7 +96,7 @@
 }
 
 .taskCard {
-  max-width: 278px;
+  width: 13vw;
   height: auto;
   border-radius: 10px;
   padding: 5px;
