@@ -5,7 +5,7 @@ import { MdDescription } from 'react-icons/md'
 import { GoKebabHorizontal } from 'react-icons/go'
 import Navbar from '../../companents/navbar/Navbar'
 import './taskInfo.css'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ava from './../../assets/vod.png';
 import { ImEarth } from 'react-icons/im';
 import { HiPencil } from 'react-icons/hi';
@@ -16,10 +16,24 @@ import { Dropdown } from '@mui/base/Dropdown';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Chat from '../../companents/chat/Chat'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 
 
 export default function TaskInfo() {
+
+    const { id } = useParams()
+    const [tasksChil , setTasksChil] = useState([])
+
+    const getTask = async () => {
+        const response = await axios.get(`http://manager.zafarr.uz/routers/lists/${id}`)
+        setTasksChil(response.data)
+    }
+
+    useEffect(() => {
+        getTask()
+    }, [])
 
     const top100Films = [
         { label: 'Muhammad Komilov', year: 1994 },
@@ -181,7 +195,7 @@ export default function TaskInfo() {
             </div>
             <div className="tasks">
                 {
-                    task.map(taskItem => (
+                    tasksChil.map(taskItem => (
                         <div className="taskCard" key={taskItem.id}>
                             <div className="tasksNav">
                                 <div className="taskData">
@@ -192,7 +206,7 @@ export default function TaskInfo() {
                                             ref={changeRef}
                                         />
                                     ) : (
-                                        <p>{taskItem.name}</p>
+                                        <p>{taskItem.title}</p>
                                     )}
                                 </div>
                                 <div className="taskSet">
@@ -220,7 +234,7 @@ export default function TaskInfo() {
                                     </Dropdown>
                                 </div>
                             </div>
-                            {
+                            {/* {
                                 taskItem.children.map(item => (
                                     <div className="taskInfoCardGlav">
                                         <div className="taskInfoCard" onClick={() => closeRef.current.classList.remove('none1')}>
@@ -266,7 +280,7 @@ export default function TaskInfo() {
                                         </div>
                                     </div>
                                 ))
-                            }
+                            } */}
                             <div className="addMiniDesc">
                                 <input ref={inputRef} type="text" placeholder='Add another card' />
                                 <button onClick={() => AddTask(taskItem)}><BsPlusLg /></button>

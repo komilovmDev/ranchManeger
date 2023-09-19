@@ -44,7 +44,7 @@ export default function Home() {
             <div className="mainCards">
                 {
                     taskData.map(item => (
-                        <Link to={'/TaskInfo'}>
+                        <Link to={`/TaskInfo/${item.id}`}>
                             <TaskCard item={item} />
                         </Link>
                     ))

@@ -27,7 +27,7 @@ function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/Profil' element={<ProfelInfo />} />
           <Route path='/user' element={<User />} />
-          <Route path='/TaskInfo' element={<TaskInfo />} />
+          <Route path='/TaskInfo/:id' element={<TaskInfo />} />
           <Route path='/UserPage' element={<UserPage />} />
         </Routes>
     </>
