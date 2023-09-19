@@ -24,19 +24,16 @@ export default function Home() {
 
     const [userData, setUserData] = useState([])
 
-    const [taskData, setTaskData] = useState([
-        {
-            id: 1,
-            name: "UKM Website build",
-            users: [
-                {
-                    image: "https://cdn-icons-png.flaticon.com/512/21/21104.png"
-                }
-            ]
-        }
-    ])
+    const [taskData, setTaskData] = useState([])
 
+    const getBoard = async () => {
+        const response = await axios.get("http://manager.zafarr.uz/routers/boards/")
+        setTaskData(response.data)
+    }
 
+    useEffect(() => {
+        getBoard()
+    }, [])
 
 
 
