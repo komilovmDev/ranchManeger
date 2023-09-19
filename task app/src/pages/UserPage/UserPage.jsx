@@ -216,7 +216,7 @@ export default function UserPage() {
                                                                     <HiPencil />
                                                                 </button>
                                                             </div>
-                                                            <label> in list <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /></label>
+                                                            <label> in list <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /> - <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /></label>
                                                         </div>
                                                         <div className="TaskInfFile">
                                                             <div className="TaskInfFileT">
