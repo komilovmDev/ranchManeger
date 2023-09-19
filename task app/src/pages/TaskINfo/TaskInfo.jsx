@@ -248,20 +248,6 @@ export default function TaskInfo() {
                                                             </div>
                                                             <label> in list <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /> - <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /></label>
                                                         </div>
-                                                        <div className="TaskInfoLabelBox">
-                                                            <div className="TaskInfLabel">
-                                                                <label> <MdDescription className='Description' />    <input type="text" placeholder='Description' /></label>
-                                                                <div className="btnLabel">
-                                                                    <button><BsPlusLg /> Edit</button>
-                                                                </div>
-                                                            </div>
-                                                            <div className="TaskInfLabel">
-                                                                <label> <MdDescription className='Description' />    <input type="text" placeholder=' Attachment' /></label>
-                                                                <div className="btnLabel">
-                                                                    <button><BsPlusLg /> Edit</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
                                                         <div className="TaskInfFile">
                                                             <div className="TaskInfFileT">
                                                                 <div className="TaskInfFileBtn">
