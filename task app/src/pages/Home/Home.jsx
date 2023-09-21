@@ -14,7 +14,6 @@ export default function Home() {
     const getUser = async () => {
         const response = await axios.get("http://manager.zafarr.uz/users/")
         setUserData(response.data)
-        console.log(response.data);
     }
 
     useEffect(() => {
