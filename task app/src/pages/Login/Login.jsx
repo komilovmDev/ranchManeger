@@ -13,14 +13,14 @@ export default function Login() {
         e.preventDefault(); // Formani serverga yuborishni oldini oladi
 
         try {
-            const response = await axios.post('http://manager.zafarr.uz/token/', {
+            const response = await axios.post('http://manager.zafarr.uz/login/', {
                 username: username,
                 password: password,
             });
 
-            if (response.data.access) {
+            if (response.data.token) {
                 console.log('Login successful');
-                const token = response.data.access;
+                const token = response.data.token;
                 localStorage.setItem('accessToken', token);
                 navigate('/');
             } else {

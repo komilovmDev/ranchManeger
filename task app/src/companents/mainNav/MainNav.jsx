@@ -52,7 +52,7 @@ export default function MainNav({ setTaskData, taskData }) {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        "Authorization": `Bearer ${tokenw}`,
+                        "Authorization": `Token ${tokenw}`,
                     },
                 }
             );

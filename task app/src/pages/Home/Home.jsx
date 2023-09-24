@@ -23,16 +23,26 @@ export default function Home() {
 
     const [userData, setUserData] = useState([])
 
-    const [taskData, setTaskData] = useState([])
+    const [taskData, setTaskData] = useState([]);
+    const token = localStorage.getItem('accessToken');
 
     const getBoard = async () => {
-        const response = await axios.get("http://manager.zafarr.uz/routers/boards/")
-        setTaskData(response.data)
+        try {
+            const response = await axios.get("http://manager.zafarr.uz/routers/boards/", {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token}`,
+                },
+            });
+            setTaskData(response.data);
+        } catch (error) {
+            console.error('Xatolik yuz berdi:', error);
+        }
     }
 
     useEffect(() => {
-        getBoard()
-    }, [])
+        getBoard();
+    }, []);
 
 
 
@@ -43,7 +53,7 @@ export default function Home() {
             <div className="mainCards">
                 {
                     taskData.map(item => (
-                        <Link to={`/TaskInfo/${item.id}`}>
+                        <Link>
                             <TaskCard item={item} />
                         </Link>
                     ))
