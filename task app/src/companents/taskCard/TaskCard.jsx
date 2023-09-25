@@ -8,7 +8,7 @@ export default function TaskCard({ item }) {
     const token = localStorage.getItem('accessToken')
 
     const deleteBoard = async () => {
-        const response = await axios.delete("http://manager.zafarr.uz/routers/boards/",
+        const response = await axios.delete(`http://manager.zafarr.uz/routers/boards/${item.id}`,
             {
                 headers: {
                     'Content-Type': 'application/json',
@@ -16,6 +16,7 @@ export default function TaskCard({ item }) {
                 },
             }
         )
+        window.location.reload()
     }
 
     return (
