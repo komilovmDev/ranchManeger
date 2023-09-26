@@ -3,7 +3,7 @@
     height: auto;
     border: 1px solid;
     padding: 5px;
-    border-radius: 5px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -30,5 +30,15 @@
 
 .boximgtype .modal {
     display: flex;
+    align-items: center;
     flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+.redCard {
+    background-color: rgba(202, 85, 85, 0.144);
+}
+
+.greenCard {
+    background-color: #40C9A2;
 }

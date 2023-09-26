@@ -18,13 +18,14 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Chat from '../../companents/chat/Chat'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import Card from './Card'
 
 
 
 export default function TaskInfo() {
 
     const { id } = useParams()
-    const [tasksChil , setTasksChil] = useState([])
+    const [tasksChil, setTasksChil] = useState([])
 
     const getTask = async () => {
         const response = await axios.get(`http://manager.zafarr.uz/routers/lists/${id}`)
@@ -138,6 +139,47 @@ export default function TaskInfo() {
         }
     }
 
+
+    // list add 
+    console.log(id);
+
+    const tokenw = localStorage.getItem('accessToken');
+
+    const addList = async () => {
+        try {
+            const response = await axios.post(
+                `http://manager.zafarr.uz/routers/list/`,
+                {
+                    title: taskNameRef.current.value,
+                    board: id
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Authorization": `Token ${tokenw}`,
+                    },
+                }
+            );
+            console.log(response.data);
+            window.location.reload()
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
+
+    // get card 
+    const [cards, setCards] = useState([])
+    const getCard = async () => {
+        const response = await axios.get(`http://manager.zafarr.uz/routers/cards/`)
+        setCards(response.data)
+    }
+
+    useEffect(() => {
+        getCard()
+    }, [])
+
+
     return (
         <>
             <Navbar />
@@ -234,53 +276,49 @@ export default function TaskInfo() {
                                     </Dropdown>
                                 </div>
                             </div>
-                            {/* {
-                                taskItem.children.map(item => (
-                                    <div className="taskInfoCardGlav">
-                                        <div className="taskInfoCard" onClick={() => closeRef.current.classList.remove('none1')}>
-                                            <p>{item.name}</p>
-                                            <div className="taskInfoCard__usersINfo">
-                                                <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
-                                                <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
-                                            </div>
-                                        </div>
-                                        <div ref={closeRef} className="TascInfMOdule none1">
-                                            <div className="TascInfMOduleCard">
-                                                <div className='CloseBox'>
-                                                    <button className='close' onClick={() => closeRef.current.classList.add('none1')}>X</button>
-                                                </div>
-                                                <div className="TaskInfBox">
-                                                    <div className="TaskInfBoxLeft">
-                                                        <div className="TaskInfBoxLeftGalvLable">
-                                                            <div className='GlavLableTitle'>
-                                                                <h1>
-                                                                    Website buil
-                                                                </h1>
-                                                                <button>
-                                                                    <HiPencil />
-                                                                </button>
-                                                            </div>
-                                                            <label> in list <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /> - <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /></label>
-                                                        </div>
-                                                        <div className="TaskInfFile">
-                                                            <div className="TaskInfFileT">
-                                                                <div className="TaskInfFileBtn">
-                                                                    <div className="CommentInfo">
-                                                                        <Chat />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div className="TaskInfRight">
 
+                            <div className="taskInfoCardGlav">
+                                {
+                                    cards.map(card => ( 
+                                        <Card card={card}/>
+                                    ))
+                                }
+                                <div ref={closeRef} className="TascInfMOdule none1">
+                                    <div className="TascInfMOduleCard">
+                                        <div className='CloseBox'>
+                                            <button className='close' onClick={() => closeRef.current.classList.add('none1')}>X</button>
+                                        </div>
+                                        <div className="TaskInfBox">
+                                            <div className="TaskInfBoxLeft">
+                                                <div className="TaskInfBoxLeftGalvLable">
+                                                    <div className='GlavLableTitle'>
+                                                        <h1>
+                                                            Website buil
+                                                        </h1>
+                                                        <button>
+                                                            <HiPencil />
+                                                        </button>
+                                                    </div>
+                                                    <label> in list <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /> - <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /></label>
+                                                </div>
+                                                <div className="TaskInfFile">
+                                                    <div className="TaskInfFileT">
+                                                        <div className="TaskInfFileBtn">
+                                                            <div className="CommentInfo">
+                                                                <Chat />
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div className="TaskInfRight">
+
                                             </div>
                                         </div>
                                     </div>
-                                ))
-                            } */}
+                                </div>
+                            </div>
+
                             <div className="addMiniDesc">
                                 <input ref={inputRef} type="text" placeholder='Add another card' />
                                 <button onClick={() => AddTask(taskItem)}><BsPlusLg /></button>
@@ -291,7 +329,7 @@ export default function TaskInfo() {
                 <div className="taskAddBtn">
                     <div className="addMiniDesc" style={{ backgroundColor: "#F1F3F2" }}>
                         <input ref={taskNameRef} type="text" placeholder='Add another list' />
-                        <button onClick={AddTaskMenu}><BsPlusLg /></button>
+                        <button onClick={addList}><BsPlusLg /></button>
                     </div>
                 </div>
             </div >
