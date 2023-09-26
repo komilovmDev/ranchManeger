@@ -1,7 +1,9 @@
 import axios from 'axios'
 import './taskCard.css'
 import { Link } from 'react-router-dom'
-import { AiFillCloseCircle } from 'react-icons/ai'
+import {BiPencil} from 'react-icons/bi'
+import { AiOutlineDelete } from 'react-icons/ai'
+import BasicModal from '../BasicModal/Modal'
 
 export default function TaskCard({ item }) {
 
@@ -23,7 +25,10 @@ export default function TaskCard({ item }) {
         <div className="UserCardBox" key={item.id}>
             <div className="UserCard">
                 <div className="boximgtype">
-                    <button onClick={deleteBoard}><AiFillCloseCircle size={'40px'} /></button>
+                    <div className="modal">
+                        <BasicModal main={<button className='saveModal' onClick={deleteBoard}>Delete</button>} text={'Delete Board ?'} btn={<AiOutlineDelete color='red' size={'25px'} />} />
+                        <BasicModal element={<input className='modalIn' placeholder='Board Name'/>} main={<button className='saveModal' onClick={''}>ok</button>} text={'Board rename'} btn={<BiPencil color='black' size={'25px'}/>}/>
+                    </div>
                 </div>
                 <Link to={`/TaskInfo/${item.id}`}>
                     <div className="Teaxt">
