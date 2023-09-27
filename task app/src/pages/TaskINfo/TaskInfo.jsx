@@ -19,6 +19,7 @@ import Chat from '../../companents/chat/Chat'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import Card from './Card'
+import List from './List'
 
 
 
@@ -64,84 +65,9 @@ export default function TaskInfo() {
             }
         }
     };
-    const [task, setTask] = useState([
-        {
-            id: 1,
-            name: "UKM frontend",
-            children: [
-                {
-                    id: 1,
-                    name: "Website build",
-                },
-                {
-                    id: 2,
-                    name: "Website build 2",
-                },
-                {
-                    id: 3,
-                    name: "Website build 3",
-                }
-            ]
-        },
-    ])
 
 
-    function Addtack() {
-        if (inputRef.current.value == '') {
-            inputRef.current.classList.add('inError')
-            closeRef.classList.add('none')
-        } else {
-            const newTask = {
-                id: taskData.length + 1,
-                name: inputRef.current.value,
-                users: [
-                    {
-                        image: "https://img.a.transfermarkt.technology/portrait/big/8198-1685035469.png?lm=1"
-                    }
-                ]
-            };
-
-            setTaskData([...taskData, newTask])
-            inputRef.current.classList.remove('inError')
-            inputRef.current.value = null
-        }
-
-    }
-
-
-    function AddTaskMenu() {
-        if (taskNameRef.current.value !== "") {
-            const newData = {
-                id: task.length + 1,
-                name: taskNameRef.current.value,
-                children: []
-            }
-
-            setTask([...task, newData])
-            taskNameRef.current.value = ""
-        }
-    }
-
-
-    function AddTask(taskItem) {
-        if (inputRef.current.value !== "") {
-            const newData = {
-                id: taskItem.children.length + 1,
-                name: inputRef.current.value,
-            };
-
-            const updatedTask = [...task];
-            taskItem.children.push(newData);
-            setTask(updatedTask);
-            inputRef.current.value = "";
-        } else {
-            inputRef.current.classList.add('inError');
-        }
-    }
-
-
-    // list add 
-    console.log(id);
+    // list add
 
     const tokenw = localStorage.getItem('accessToken');
 
@@ -168,17 +94,8 @@ export default function TaskInfo() {
     };
 
 
-    // get card 
-    const [cards, setCards] = useState([])
-    const getCard = async () => {
-        const response = await axios.get(`http://manager.zafarr.uz/routers/cards/`)
-        setCards(response.data)
-    }
 
-    useEffect(() => {
-        getCard()
-    }, [])
-
+    // add card
 
     return (
         <>
@@ -237,94 +154,20 @@ export default function TaskInfo() {
             </div>
             <div className="tasks">
                 {
-                    tasksChil.map(taskItem => (
-                        <div className="taskCard" key={taskItem.id}>
-                            <div className="tasksNav">
-                                <div className="taskData">
-                                    {taskItem.id === editingTaskName ? (
-                                        <input
-                                            type="text"
-                                            placeholder={taskItem.name}
-                                            ref={changeRef}
-                                        />
-                                    ) : (
-                                        <p>{taskItem.title}</p>
-                                    )}
-                                </div>
-                                <div className="taskSet">
-                                    <Dropdown>
-                                        <MenuButton>
-                                            <button>
-                                                {
-                                                    taskItem.id === editingTaskName ? (
-                                                        <button onClick={() => setEditingTaskName(changeRef.current.value)}>Save</button>
-                                                    ) : (
-                                                        <GoKebabHorizontal />
-                                                    )
-                                                }
-                                            </button>
-                                        </MenuButton>
-                                        <Menu className="dropMenu">
-                                            <MenuItem
-                                                className="dropBtn"
-                                                onClick={() => setEditingTaskName(taskItem.id)}
-                                            >
-                                                Rename
-                                            </MenuItem>
-                                            <MenuItem className="dropBtn">Delete this list</MenuItem>
-                                        </Menu>
-                                    </Dropdown>
-                                </div>
-                            </div>
-
-                            <div className="taskInfoCardGlav">
-                                {
-                                    cards.map(card => ( 
-                                        <Card card={card}/>
-                                    ))
-                                }
-                                <div ref={closeRef} className="TascInfMOdule none1">
-                                    <div className="TascInfMOduleCard">
-                                        <div className='CloseBox'>
-                                            <button className='close' onClick={() => closeRef.current.classList.add('none1')}>X</button>
-                                        </div>
-                                        <div className="TaskInfBox">
-                                            <div className="TaskInfBoxLeft">
-                                                <div className="TaskInfBoxLeftGalvLable">
-                                                    <div className='GlavLableTitle'>
-                                                        <h1>
-                                                            Website buil
-                                                        </h1>
-                                                        <button>
-                                                            <HiPencil />
-                                                        </button>
-                                                    </div>
-                                                    <label> in list <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /> - <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /></label>
-                                                </div>
-                                                <div className="TaskInfFile">
-                                                    <div className="TaskInfFileT">
-                                                        <div className="TaskInfFileBtn">
-                                                            <div className="CommentInfo">
-                                                                <Chat />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="TaskInfRight">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="addMiniDesc">
-                                <input ref={inputRef} type="text" placeholder='Add another card' />
-                                <button onClick={() => AddTask(taskItem)}><BsPlusLg /></button>
-                            </div>
-                        </div>
+                    tasksChil.map((taskItem, index) => (
+                        <List
+                            key={taskItem.id} 
+                            inputRef={inputRef}
+                            editingTaskName={editingTaskName}
+                            closeRef={closeRef}
+                            setEditingTaskName={setEditingTaskName}
+                            taskItem={taskItem}
+                            id={id}
+                            changeRef={changeRef}
+                           
+                        />
                     ))
+
                 }
                 <div className="taskAddBtn">
                     <div className="addMiniDesc" style={{ backgroundColor: "#F1F3F2" }}>
