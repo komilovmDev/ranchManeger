@@ -13,9 +13,12 @@ import Chat from '../../companents/chat/Chat'
 import { MdDescription } from 'react-icons/md'
 import { GoKebabHorizontal } from 'react-icons/go'
 import Card from "./Card";
+import { useParams } from "react-router-dom";
 
 
-export default function List({ taskItem, closeRef, setEditingTaskName, editingTaskName, inputRef, id, changeRef }) {
+export default function List({ taskItem, closeRef, setEditingTaskName, editingTaskName, inputRef, changeRef }) {
+
+    const {id} = useParams()
 
     const tokenw = localStorage.getItem('accessToken');
 
@@ -60,6 +63,31 @@ export default function List({ taskItem, closeRef, setEditingTaskName, editingTa
     };
 
 
+    const listRename = async (taskItem , inputValue) => {
+        console.log(taskItem);
+        try {
+            const response = await axios.put(
+                `http://manager.zafarr.uz/routers/list/${taskItem}/`,
+                {
+                    title: inputValue ,
+                    board: id
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Authorization": `Token ${tokenw}`,
+                    },
+                }
+            );
+            console.log(response.data);
+            window.location.reload()
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+
+
+
     return (
         <>
             <div className="taskCard" key={taskItem.id}>
@@ -69,7 +97,12 @@ export default function List({ taskItem, closeRef, setEditingTaskName, editingTa
                             <input
                                 type="text"
                                 placeholder={taskItem.name}
-                                ref={changeRef}
+                                onKeyPress={(e) => {
+                                    if (e.key === "Enter") {
+                                        listRename(taskItem.id , e.target.value)
+                                        e.target.value = ""
+                                    }
+                                }}
                             />
                         ) : (
                             <p>{taskItem.title}</p>
@@ -79,13 +112,7 @@ export default function List({ taskItem, closeRef, setEditingTaskName, editingTa
                         <Dropdown>
                             <MenuButton>
                                 <button>
-                                    {
-                                        taskItem.id === editingTaskName ? (
-                                            <button onClick={() => setEditingTaskName(changeRef.current.value)}>Save</button>
-                                        ) : (
-                                            <GoKebabHorizontal />
-                                        )
-                                    }
+                                    <GoKebabHorizontal />
                                 </button>
                             </MenuButton>
                             <Menu className="dropMenu">

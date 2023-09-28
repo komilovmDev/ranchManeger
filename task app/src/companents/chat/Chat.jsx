@@ -1,45 +1,38 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Chat.css';
 import img from './../../assets/vod.png';
-class Chat extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: [],
-      newMessage: '',
-      selectedFile: null,
-      fileUrl: null, // Fayl URL si
-    };
-  }
+import axios from 'axios';
 
-  handleMessageChange = (e) => {
-    this.setState({ newMessage: e.target.value });
-  }
+function Chat() {
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [fileUrl, setFileUrl] = useState(null);
 
-  handleFileChange = (e) => {
-    this.setState({ selectedFile: e.target.files[0] });
-  }
+  const handleMessageChange = (e) => {
+    setNewMessage(e.target.value);
+  };
 
-  sendMessage = () => {
-    const { newMessage, selectedFile, messages } = this.state;
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
 
+  const sendMessage = () => {
     const newMessageObj = {
       text: newMessage,
       file: selectedFile,
     };
 
-    this.setState((prevState) => ({
-      messages: [...prevState.messages, newMessageObj],
-      newMessage: '',
-      selectedFile: null,
-    }));
+    setMessages([...messages, newMessageObj]);
+    setNewMessage('');
+    setSelectedFile(null);
 
     if (selectedFile) {
-      this.sendFile(selectedFile);
+      sendFile(selectedFile);
     }
-  }
+  };
 
-  sendFile = (file) => {
+  const sendFile = (file) => {
     // Faylni serverga yuborishni o'zgartiring
     // Faylning server tomonidan qabul qilinishi va URL ni olish
 
@@ -47,40 +40,59 @@ class Chat extends Component {
     const serverFileUrl = 'https://example.com/uploads/your-file.pdf'; // Fayl URL si
 
     // Fayl URL sini saqlang
-    this.setState({ fileUrl: serverFileUrl });
+    setFileUrl(serverFileUrl);
+  };
+
+
+  const tokenw = localStorage.getItem('accessToken');
+  const getCommet = async () => {
+    const response = await axios.get(`http://manager.zafarr.uz/routers/comments/card/56/`,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Token ${tokenw}`,
+        },
+      }
+    )
+    setMessages(response.data)
+    console.log(response.data);
   }
 
-  render() {
-    return (
-      <div className='ChatInfo'>
-        <div className="chat-box">
-          {this.state.messages.map((message, index) => (
-            <div key={index} className="message">
-              <div className="user-name">
-                <img src={img} alt="img" />
-                <div className="TextComment">
-                  <p>Mukhammad Komilov</p>
-                  <p id='text'>{message.text}</p>
-                  {message.file && (
-                    <div>
-                      <a href={this.state.fileUrl} target="_blank" rel="noopener noreferrer">{message.file.name}</a>
-                    </div>
-                  )}
-                </div>
+  useEffect(() => {
+    getCommet()
+  }, [])
+
+
+
+  return (
+    <div className='ChatInfo'>
+      <div className="chat-box">
+        {messages.map((message, index) => (
+          <div key={index} className="message">
+            <div className="user-name">
+              <img src={img} alt="img" />
+              <div className="TextComment">
+                <p>Mukhammad Komilov</p>
+                <p id='text'>{message.text}</p>
+                {message.file && (
+                  <div>
+                    <a href={fileUrl} target="_blank" rel="noopener noreferrer">{message.file.name}</a>
+                  </div>
+                )}
               </div>
             </div>
-          ))}
-        </div>
-
-        <div className="message-input">
-          <img src={img} alt="img" />
-          <input className='Habar' type="text" placeholder="Xabar kiritish..." value={this.state.newMessage} onChange={this.handleMessageChange} />
-          <input className='HabarFile' type="file" onChange={this.handleFileChange} />
-          <button onClick={this.sendMessage}>Yuborish</button>
-        </div>
+          </div>
+        ))}
       </div>
-    );
-  }
+
+      <div className="message-input">
+        <img src={img} alt="img" />
+        <input className='Habar' type="text" placeholder="Xabar kiritish..." value={newMessage} onChange={handleMessageChange} />
+        <input className='HabarFile' type="file" onChange={handleFileChange} />
+        <button onClick={sendMessage}>Yuborish</button>
+      </div>
+    </div>
+  );
 }
 
 export default Chat;

@@ -35,6 +35,8 @@
   -moz-box-shadow: 0px 0px 18px 4px rgba(34, 60, 80, 0.2);
   box-shadow: 0px 0px 18px 4px rgba(34, 60, 80, 0.2);
   cursor: pointer;
+  position: relative;
+  word-wrap: break-word;
 }
 
 .boximgtype {
@@ -43,7 +45,9 @@
 }
 
 .Teaxt p{
+  width: 100%;
   color: #FF8B36;
+  word-wrap: wrap;
 }
 
 .UserImg {
