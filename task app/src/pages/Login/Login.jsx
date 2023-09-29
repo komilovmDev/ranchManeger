@@ -21,7 +21,9 @@ export default function Login() {
             if (response.data.token) {
                 console.log('Login successful');
                 const token = response.data.token;
+                const userID = response.data.user_id
                 localStorage.setItem('accessToken', token);
+                localStorage.setItem('userID' , userID)
                 navigate('/');
             } else {
                 console.error('Login failed: Invalid response format');

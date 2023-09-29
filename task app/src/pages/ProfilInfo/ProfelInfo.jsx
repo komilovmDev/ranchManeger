@@ -26,6 +26,7 @@ export default function ProfelInfo() {
 
     const handleLogout = () => {
         localStorage.removeItem('accessToken');
+        localStorage.removeItem('userID')
         window.location.reload()
     };
 

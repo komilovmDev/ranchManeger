@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Chat.css';
 import img from './../../assets/vod.png';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-function Chat({card}) {
+function Chat({ card }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
@@ -45,6 +46,7 @@ function Chat({card}) {
 
 
   const tokenw = localStorage.getItem('accessToken');
+  const userID = localStorage.getItem('userID')
   const getCommet = async () => {
     const response = await axios.get(`http://manager.zafarr.uz/routers/comments/card/${card.id}/`,
       {
@@ -62,6 +64,37 @@ function Chat({card}) {
     getCommet()
   }, [])
 
+  // add commit
+
+  const messageValue = useRef()
+  const fileValue = useRef()
+  const {boardId} = useParams()
+
+  const postCommit = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('text', messageValue.current.value);
+      formData.append('card', card.id);
+      formData.append('user', userID);
+      formData.append('file', fileValue.current.files[0]); // Faylni olish
+  
+      await axios.post(
+        'http://manager.zafarr.uz/routers/comment/',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data', // Fayl yuborish uchun bu kerak
+            Authorization: `Token ${tokenw}`,
+          },
+        }
+      );
+      window.location.reload();
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+  
+
 
 
   return (
@@ -76,7 +109,7 @@ function Chat({card}) {
                 <p id='text'>{message.text}</p>
                 {message.file && (
                   <div>
-                    <a href={fileUrl} target="_blank" rel="noopener noreferrer">{message.file.name}</a>
+                    <a href={message.file} target="_blank" rel="noopener noreferrer">{'Filne Korish'}</a>
                   </div>
                 )}
               </div>
@@ -86,9 +119,9 @@ function Chat({card}) {
       </div>
       <div className="message-input">
         <img src={img} alt="img" />
-        <input className='Habar' type="text" placeholder="Xabar kiritish..." value={newMessage} onChange={handleMessageChange} />
-        <input className='HabarFile' type="file" onChange={handleFileChange} />
-        <button onClick={sendMessage}>Yuborish</button>
+        <input className='Habar' ref={messageValue} type="text" placeholder="Xabar kiritish..." value={newMessage} onChange={handleMessageChange} />
+        <input className='HabarFile' ref={fileValue} type="file" onChange={handleFileChange} />
+        <button onClick={() => postCommit()}>Yuborish</button>
       </div>
     </div>
   );

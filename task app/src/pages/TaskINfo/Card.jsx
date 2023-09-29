@@ -3,6 +3,7 @@ import axios from "axios"
 import Chat from "../../companents/chat/Chat"
 import { Modal } from '@mui/base/Modal';
 import BasicModal from "../../companents/BasicModal/Modal";
+import ChatModal from "../../companents/ChatModal/ChatModal";
 
 export default function Card({ids , closeRef}) {
 
@@ -28,7 +29,7 @@ export default function Card({ids , closeRef}) {
                             <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
                             <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
                         </div>
-                        <BasicModal btn={<button>Open modal</button>} main={<Chat card={card}/>}/>
+                        <ChatModal main={<Chat card={card}/>}/>
                     </div>
                 ))
             }
