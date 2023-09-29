@@ -3,7 +3,7 @@ import './Chat.css';
 import img from './../../assets/vod.png';
 import axios from 'axios';
 
-function Chat() {
+function Chat({card}) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
@@ -46,7 +46,7 @@ function Chat() {
 
   const tokenw = localStorage.getItem('accessToken');
   const getCommet = async () => {
-    const response = await axios.get(`http://manager.zafarr.uz/routers/comments/card/56/`,
+    const response = await axios.get(`http://manager.zafarr.uz/routers/comments/card/${card.id}/`,
       {
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +84,6 @@ function Chat() {
           </div>
         ))}
       </div>
-
       <div className="message-input">
         <img src={img} alt="img" />
         <input className='Habar' type="text" placeholder="Xabar kiritish..." value={newMessage} onChange={handleMessageChange} />

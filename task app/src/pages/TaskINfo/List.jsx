@@ -130,40 +130,6 @@ export default function List({ taskItem, closeRef, setEditingTaskName, editingTa
 
                 <div className="taskInfoCardGlav">
                     <Card closeRef={closeRef} ids={taskItem.id} />
-                    <div ref={closeRef} className="TascInfMOdule none1">
-                        <div className="TascInfMOduleCard">
-                            <div className='CloseBox'>
-                                <button className='close' onClick={() => closeRef.current.classList.add('none1')}>X</button>
-                            </div>
-                            <div className="TaskInfBox">
-                                <div className="TaskInfBoxLeft">
-                                    <div className="TaskInfBoxLeftGalvLable">
-                                        <div className='GlavLableTitle'>
-                                            <h1>
-                                                Website buil
-                                            </h1>
-                                            <button>
-                                                <HiPencil />
-                                            </button>
-                                        </div>
-                                        <label> in list <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /> - <input type="date" id="start" name="trip-start" placeholder="2023-09-19" min="2023-01-01" max="2023-12-31" /></label>
-                                    </div>
-                                    <div className="TaskInfFile">
-                                        <div className="TaskInfFileT">
-                                            <div className="TaskInfFileBtn">
-                                                <div className="CommentInfo">
-                                                    <Chat />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="TaskInfRight">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div className="addMiniDesc">
                     <input onKeyPress={(e) => {
