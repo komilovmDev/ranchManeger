@@ -19,6 +19,7 @@ export default function Card({ids , closeRef}) {
     }, [])
 
 
+
     return (
         <>
             {

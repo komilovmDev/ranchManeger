@@ -25,10 +25,11 @@ export default function Home() {
 
     const [taskData, setTaskData] = useState([]);
     const token = localStorage.getItem('accessToken');
+    const userID = localStorage.getItem('userID')
 
     const getBoard = async () => {
         try {
-            const response = await axios.get("http://manager.zafarr.uz/routers/boards/", {
+            const response = await axios.get(`http://manager.zafarr.uz/routers/boards/s/${userID}/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${token}`,

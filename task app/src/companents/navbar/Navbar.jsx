@@ -1,9 +1,25 @@
 import './nav.css'
 import rmIcon from '../../assets/rm.svg'
 import { Link } from 'react-router-dom'
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
 
 
 export default function Navbar() {
+
+    // getUsername 
+    const userID = localStorage.getItem('userID')
+    const [userInfos, setUserInfos] = useState([])
+    const getUserInfo = async () => {
+        const response = await axios.get(`http://manager.zafarr.uz/routers/userprofile/${userID}/`)
+        setUserInfos(response.data)
+    }
+
+    useEffect(() => {
+        getUserInfo()
+    }, [])
+
     return (
         <div className="navbar">
             <div className="navleft">
@@ -12,10 +28,14 @@ export default function Navbar() {
             </div>
             <div className="navRight">
                 <Link to={'/Profil'}>
-                    <button className="userInfo">
-                        <img src="https://cdn-icons-png.flaticon.com/512/21/21104.png" alt="" />
-                        <h5>Muhammad Komilov</h5>
-                    </button>
+                    {
+                        userInfos.map(item => (
+                            <button className="userInfo">
+                                <img src={item.profile_image} alt="" />
+                                <h5>{item.first_name == "" ? item.username : item.first_name} {item.last_name == "" ? item.username : item.last_name}</h5>
+                            </button>
+                        ))
+                    }
                 </Link>
             </div>
         </div>

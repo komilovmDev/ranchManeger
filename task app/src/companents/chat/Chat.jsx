@@ -76,8 +76,12 @@ function Chat({ card }) {
       formData.append('text', messageValue.current.value);
       formData.append('card', card.id);
       formData.append('user', userID);
-      formData.append('file', fileValue.current.files[0]); // Faylni olish
   
+      // Faylni tekshirish
+      if (fileValue.current.files.length > 0) {
+        formData.append('file', fileValue.current.files[0]); // Faylni olish
+      }
+    
       await axios.post(
         'http://manager.zafarr.uz/routers/comment/',
         formData,
@@ -94,7 +98,17 @@ function Chat({ card }) {
     }
   };
   
+  
+    // getUsername 
+    const [userInfos , setUserInfos] = useState([])
+    const getUserInfo = async () => {
+        const response = await axios.get(`http://manager.zafarr.uz/routers/userprofile/${userID}/`)
+        setUserInfos(response.data)
+    }
 
+    useEffect(() => {
+      getUserInfo()
+    }, [])
 
 
   return (
@@ -103,9 +117,9 @@ function Chat({ card }) {
         {messages.map((message, index) => (
           <div key={index} className="message">
             <div className="user-name">
-              <img src={img} alt="img" />
+              <img src={userInfos[0].profile_image} alt="img" />
               <div className="TextComment">
-                <p>Mukhammad Komilov</p>
+                <p>{userInfos[0].first_name} {userInfos[0].last_name}</p>
                 <p id='text'>{message.text}</p>
                 {message.file && (
                   <div>
