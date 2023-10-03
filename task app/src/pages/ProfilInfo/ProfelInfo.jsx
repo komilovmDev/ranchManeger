@@ -95,6 +95,7 @@ export default function ProfelInfo() {
                     }
                     <div className="LogAut">
                         <button onClick={handleLogout}>LogOut</button>
+                        <button>Saqlash</button>
                     </div>
                 </div>
             </div>
