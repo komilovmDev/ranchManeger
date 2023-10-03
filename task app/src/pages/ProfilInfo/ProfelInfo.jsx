@@ -1,6 +1,6 @@
 import './ProfelInfo.css';
 import ava from './../../assets/vod.png';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from '../../companents/navbar/Navbar'
 
@@ -30,6 +30,16 @@ export default function ProfelInfo() {
         window.location.reload()
     };
 
+    const userID = localStorage.getItem('userID')
+    const [userInfos, setUserInfos] = useState([])
+    const getUserInfo = async () => {
+        const response = await axios.get(`http://manager.zafarr.uz/routers/userprofile/${userID}/`)
+        setUserInfos(response.data)
+    }
+    useEffect(() => {
+        getUserInfo()
+    }, [])
+
 
     return (
         <>
@@ -39,46 +49,50 @@ export default function ProfelInfo() {
                     <div className="PersonalTitle">
                         <h1>Personal Info</h1>
                     </div>
-                    <div className="PersonalInfoBox">
-                        <div className="PersonalPhoto">
-                            <div className="NamePhoto">
-                                <p>PHOTO</p>
-                            </div>
-                            <div className="ImgPhoto">
-                                <div className="ImgPhotoBox">
-                                    <img src={imageSrc || ava} alt="User's photo" />
+                    {
+                        userInfos.map(item => (
+                            <div className="PersonalInfoBox">
+                                <div className="PersonalPhoto">
+                                    <div className="NamePhoto">
+                                        <p>PHOTO</p>
+                                    </div>
+                                    <div className="ImgPhoto">
+                                        <div className="ImgPhotoBox">
+                                            <img src={imageSrc ||item.profile_image} alt="User's photo" />
+                                        </div>
+                                    </div>
+                                    <div className="InputPhoto">
+                                        <div>
+                                            <label htmlFor="fileInput" className="custom-file-upload">Image</label>
+                                            <input
+                                                type="file"
+                                                id="fileInput"
+                                                style={{ display: 'none' }}
+                                                onChange={handleFileChange}
+                                            />
+                                            {selectedFile && <p>Selected file: {selectedFile.name}</p>}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="PersonalName">
+                                    <div className="NameName">
+                                        <p>NAME</p>
+                                    </div>
+                                    <div className="NameText">
+                                        <p>{item.first_name} {item.last_name}</p>
+                                    </div>
+                                </div>
+                                <div className="PersonalAdress">
+                                    <div className="AdressName">
+                                        <p>ADDRESS</p>
+                                    </div>
+                                    <div className="AdressEmail">
+                                        <p>{item.email}</p>
+                                    </div>
                                 </div>
                             </div>
-                            <div className="InputPhoto">
-                                <div>
-                                    <label htmlFor="fileInput" className="custom-file-upload">Image</label>
-                                    <input
-                                        type="file"
-                                        id="fileInput"
-                                        style={{ display: 'none' }}
-                                        onChange={handleFileChange}
-                                    />
-                                    {selectedFile && <p>Selected file: {selectedFile.name}</p>}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="PersonalName">
-                            <div className="NameName">
-                                <p>NAME</p>
-                            </div>
-                            <div className="NameText">
-                                <p>Muhammad Komilov</p>
-                            </div>
-                        </div>
-                        <div className="PersonalAdress">
-                            <div className="AdressName">
-                                <p>ADDRESS</p>
-                            </div>
-                            <div className="AdressEmail">
-                                <p>komilovm.dev@gmail.com</p>
-                            </div>
-                        </div>
-                    </div>
+                        ))
+                    }
                     <div className="LogAut">
                         <button onClick={handleLogout}>LogOut</button>
                     </div>
