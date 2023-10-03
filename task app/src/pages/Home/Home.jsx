@@ -29,7 +29,7 @@ export default function Home() {
 
     const getBoard = async () => {
         try {
-            const response = await axios.get(`http://manager.zafarr.uz/routers/boards/s/${userID}/`, {
+            const response = await axios.get(`http://manager.zafarr.uz/routers/boards/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${token}`,

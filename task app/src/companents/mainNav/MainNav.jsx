@@ -41,13 +41,15 @@ export default function MainNav({ setTaskData, taskData }) {
     // };
 
     const tokenw = localStorage.getItem('accessToken');
+    const userID = localStorage.getItem('userID')
 
     const AddBoard = async () => {
         try {
             const response = await axios.post(
                 "http://manager.zafarr.uz/routers/boards/",
                 {
-                    title: inputRef.current.value
+                    title: inputRef.current.value ,
+                    user: [userID]
                 },
                 {
                     headers: {
@@ -63,9 +65,6 @@ export default function MainNav({ setTaskData, taskData }) {
         }
     };
 
-    useEffect(() => {
-        AddBoard();
-    }, []);
 
     return (
         <>

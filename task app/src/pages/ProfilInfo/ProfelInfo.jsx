@@ -40,6 +40,36 @@ export default function ProfelInfo() {
         getUserInfo()
     }, [])
 
+    // profil img change
+    const tokenw = localStorage.getItem('accessToken');
+
+    const imageChange = async () => {
+        try {
+            const formData = new FormData();
+            formData.append('username', userInfos[0].username);
+            formData.append('email', userInfos[0].email);
+            formData.append('profile_image', selectedFile);
+    
+            const tokenw = localStorage.getItem('accessToken');
+    
+            const response = await axios.put(
+                `http://manager.zafarr.uz/userprofiles/${userID}/`,
+                formData,
+                {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        "Authorization": `Token ${tokenw}`,
+                    },
+                }
+            );
+            console.log(response.data);
+            window.location.reload();
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
+    
+
 
     return (
         <>
@@ -58,7 +88,7 @@ export default function ProfelInfo() {
                                     </div>
                                     <div className="ImgPhoto">
                                         <div className="ImgPhotoBox">
-                                            <img src={imageSrc ||item.profile_image} alt="User's photo" />
+                                            <img src={imageSrc || item.profile_image} alt="User's photo" />
                                         </div>
                                     </div>
                                     <div className="InputPhoto">
@@ -95,7 +125,7 @@ export default function ProfelInfo() {
                     }
                     <div className="LogAut">
                         <button onClick={handleLogout}>LogOut</button>
-                        <button>Saqlash</button>
+                        <button onClick={imageChange}>Saqlash</button>
                     </div>
                 </div>
             </div>
