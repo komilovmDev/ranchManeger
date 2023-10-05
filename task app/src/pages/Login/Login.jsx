@@ -22,8 +22,10 @@ export default function Login() {
                 console.log('Login successful');
                 const token = response.data.token;
                 const userID = response.data.user_id
+                const is_admin = response.data.is_admin
                 localStorage.setItem('accessToken', token);
-                localStorage.setItem('userID' , userID)
+                localStorage.setItem('userID' , userID);
+                localStorage.setItem('is_admin' , is_admin);
                 navigate('/');
             } else {
                 console.error('Login failed: Invalid response format');

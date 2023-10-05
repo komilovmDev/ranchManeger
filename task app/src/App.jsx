@@ -8,6 +8,9 @@ import User from './pages/User/User'
 import TaskInfo from './pages/TaskINfo/TaskInfo'
 import UserPage from './pages/UserPage/UserPage'
 import { useEffect } from 'react';
+import UserCards from './pages/UserPage/UserCards';
+import UserTaskInfo from './pages/UserPage/UserTaskInfo';
+import ErrorPage from './errorPage';
 
 function App() {
 
@@ -15,25 +18,28 @@ function App() {
   const navigate = useNavigate()
 
   useEffect(() => {
-      if (!token) {
-          navigate('/login')
-      }
+    if (!token) {
+      navigate('/login')
+    }
   }, [token])
 
-  return (
-    <>
+  const is_admin = localStorage.getItem('is_admin')
+  console.log(is_admin);
+
+
+    return (
+      <>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/Profil' element={<ProfelInfo />} />
           <Route path='/user' element={<User />} />
           <Route path='/TaskInfo/:id' element={<TaskInfo />} />
+          <Route path='/UserTaskInfo/:id' element={<UserTaskInfo />} />
           <Route path='/UserPage' element={<UserPage />} />
         </Routes>
-    </>
-  )
-
-
-}
+      </>
+    )
+  }
 
 export default App
