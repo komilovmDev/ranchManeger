@@ -37,6 +37,19 @@ export default function TaskInfo() {
         getTask()
     }, [])
 
+    const getUser = async () => {
+        const response = await axios.get("http://manager.zafarr.uz/users/")
+        setUserData(response.data)
+    }
+
+    useEffect(() => {
+        getUser()
+    }, [])
+
+
+    const [userData, setUserData] = useState([])
+    console.log(userData);
+
     const top100Films = [
         { label: 'Muhammad Komilov', year: 1994 },
         { label: 'Lionel Ranaldo', year: 1972 },
@@ -93,9 +106,29 @@ export default function TaskInfo() {
         }
     };
 
+    // add user board 
 
+    const addUserBoard = async (itemID) => {
+        try {
+            const response = await axios.post(
+                `http://manager.zafarr.uz/invite_user/${id}/boards/`,
+                {
+                    user_id: itemID
+                },
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Authorization": `Token ${tokenw}`,
+                    },
+                }
+            );
+            console.log(response.data);
+            window.location.reload()
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
 
-    // add card
 
     return (
         <>
@@ -134,15 +167,11 @@ export default function TaskInfo() {
                             <Dropdown>
                                 <MenuButton><button><BsPlusLg /></button></MenuButton>
                                 <Menu>
-                                    <MenuItem>
-                                        <Autocomplete
-                                            disablePortal
-                                            id="combo-box-demo"
-                                            options={top100Films}
-                                            sx={{ width: 300 }}
-                                            renderInput={(params) => <TextField {...params} label="Users" />}
-                                        />
-                                    </MenuItem>
+                                    {
+                                        userData.map(item => (
+                                            <button onClick={() => addUserBoard(item.id)}>{item.last_name} {item.first_name} {item.username}</button>
+                                        ))
+                                    }
                                 </Menu>
                             </Dropdown>
                         </div>
@@ -156,7 +185,7 @@ export default function TaskInfo() {
                 {
                     tasksChil.map((taskItem, index) => (
                         <List
-                            key={taskItem.id} 
+                            key={taskItem.id}
                             inputRef={inputRef}
                             editingTaskName={editingTaskName}
                             closeRef={closeRef}
@@ -164,7 +193,7 @@ export default function TaskInfo() {
                             taskItem={taskItem}
                             id={id}
                             changeRef={changeRef}
-                           
+
                         />
                     ))
 
