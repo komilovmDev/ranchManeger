@@ -27,19 +27,30 @@ function App() {
   console.log(is_admin);
 
 
-    return (
-      <>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/Profil' element={<ProfelInfo />} />
-          <Route path='/user' element={<User />} />
-          <Route path='/TaskInfo/:id' element={<TaskInfo />} />
-          <Route path='/UserTaskInfo/:id' element={<UserTaskInfo />} />
-          <Route path='/UserPage' element={<UserPage />} />
-        </Routes>
-      </>
-    )
-  }
+  return (
+    <>
+      <Routes>
+        <Route path='/login' element={<Login />} />
+        <Route path='*' element={<ErrorPage />} />
+        {
+          is_admin == 'true' ? (
+            <>
+              <Route path='/' element={<Home />} />
+              <Route path='/Profil' element={<ProfelInfo />} />
+              <Route path='/user' element={<User />} />
+              <Route path='/TaskInfo/:id' element={<TaskInfo />} />
+            </>
+          ) : (
+            <>
+              <Route path='/UserTaskInfo/:id' element={<UserTaskInfo />} />
+              <Route path='/Profil' element={<ProfelInfo />} />
+              <Route path='/' element={<UserPage />} />
+            </>
+          )
+        }
+      </Routes>
+    </>
+  )
+}
 
 export default App
