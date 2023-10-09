@@ -10,7 +10,7 @@ export default function Login() {
     const navigate = useNavigate();
 
     const submit = async (e) => {
-        e.preventDefault(); // Formani serverga yuborishni oldini oladi
+        e.preventDefault();
 
         try {
             const response = await axios.post('http://manager.zafarr.uz/login/', {
@@ -21,11 +21,11 @@ export default function Login() {
             if (response.data.token) {
                 console.log('Login successful');
                 const token = response.data.token;
-                const userID = response.data.user_id
+                const userID = response.data.user_id;
                 const is_admin = response.data.is_admin
                 localStorage.setItem('accessToken', token);
-                localStorage.setItem('userID' , userID);
-                localStorage.setItem('is_admin' , is_admin);
+                localStorage.setItem('userID', userID);
+                localStorage.setItem('is_admin' , is_admin) 
                 navigate('/');
             } else {
                 console.error('Login failed: Invalid response format');

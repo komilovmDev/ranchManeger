@@ -24,9 +24,32 @@ function App() {
   }, [token])
 
   const is_admin = localStorage.getItem('is_admin')
+  console.log(is_admin);
 
+  // Store a hashed value of is_admin
+  function hash(value) {
+    // You can use a more secure hashing algorithm in production
+    return btoa(value);
+  }
 
-  // ======================================================================================================================================================
+  // Function to set is_admin securely
+  function setSecureIsAdmin(value) {
+    const hashedValue = hash(value.toString());
+    localStorage.setItem('secure_is_admin', is_admin);
+  }
+
+  // Function to check if the is_admin value is true
+  function isUserAdmin() {
+    const storedValue = localStorage.getItem('secure_is_admin');
+    // Check if the stored value is not null and matches the hash of 'true'
+    return storedValue !== null && storedValue === hash('true');
+  }
+
+  // Usage in your component
+  const isAdmin = isUserAdmin();
+
+  // To set is_admin
+  setSecureIsAdmin(true);
 
 
   return (
@@ -35,7 +58,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='*' element={<ErrorPage />} />
         {
-          is_admin == 'true' ? (
+          is_admin === 'true' ? (
             <>
               <Route path='/' element={<Home />} />
               <Route path='/Profil' element={<ProfelInfo />} />

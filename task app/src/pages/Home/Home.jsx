@@ -12,8 +12,17 @@ import axios from "axios";
 export default function Home() {
 
     const getUser = async () => {
-        const response = await axios.get("http://manager.zafarr.uz/users/")
-        setUserData(response.data)
+        try {
+            const response = await axios.get(`http://manager.zafarr.uz/users/`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Token ${token}`,
+                },
+            });
+            setUserData(response.data)
+        } catch (error) {
+            console.error('Xatolik yuz berdi:', error);
+        }
     }
 
     useEffect(() => {

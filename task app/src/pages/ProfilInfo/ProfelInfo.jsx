@@ -28,6 +28,7 @@ export default function ProfelInfo() {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('userID')
         localStorage.removeItem('is_admin')
+        localStorage.removeItem('secure_is_admin')
         window.location.reload()
     };
 
