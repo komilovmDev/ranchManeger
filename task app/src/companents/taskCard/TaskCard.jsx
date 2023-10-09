@@ -25,11 +25,12 @@ export default function TaskCard({ item }) {
         window.location.reload()
     }
 
-
+    const userID = localStorage.getItem('userID')
     const renameBoard = async (Id, Title) => {
-        const response = await axios.put(`http://manager.zafarr.uz/routers/boards/${item.id}/`,
+        const response = await axios.put(`http://manager.zafarr.uz/routers/all/boards/${item.id}/`,
             {
                 title: Title,
+                user: userID
             },
             {
                 headers: {
@@ -41,7 +42,7 @@ export default function TaskCard({ item }) {
         window.location.reload()
     }
 
-    
+
     const boardValue = useRef()
 
     return (
