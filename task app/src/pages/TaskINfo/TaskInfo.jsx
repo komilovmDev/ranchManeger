@@ -38,7 +38,13 @@ export default function TaskInfo() {
     }, [])
 
     const getUser = async () => {
-        const response = await axios.get("http://manager.zafarr.uz/users/")
+        const response = await axios.get("http://manager.zafarr.uz/users/",
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Authorization": `Token ${tokenw}`,
+                },
+            })
         setUserData(response.data)
     }
 
