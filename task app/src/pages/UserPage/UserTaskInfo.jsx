@@ -93,8 +93,27 @@ export default function UserTaskInfo() {
     };
 
 
+    const [boadUsers, setBoardUsers] = useState([])
+    const BoardUsers = async () => {
+        try {
+            const response = await axios.get(`http://manager.zafarr.uz/routers/boards/${id}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "Authorization": `Token ${tokenw}`,
+                    },
+                }
+            )
+            setBoardUsers(response.data.user)
+        } catch {
+            console.log("Error:", error);
+        }
+    }
 
-    // add card
+    useEffect(() => {
+        BoardUsers()
+    }, [])
+
 
     return (
         <>
@@ -126,8 +145,11 @@ export default function UserTaskInfo() {
                     </div>
                     <div className="userAdd">
                         <div className="userAdd__users">
-                            <img src="https://img.a.transfermarkt.technology/portrait/big/8198-1685035469.png?lm=1" alt="" />
-                            <img src="https://lh3.googleusercontent.com/a/AAcHTtebJ7FQXHDSt3g_H96uktTJuDJIcYFas4iuzt1iMGSV=s96-c" alt="" />
+                            {
+                                boadUsers.map(item => (
+                                    <img src={item.profile_image} alt="" />
+                                ))
+                            }
                         </div>
                         <div className="userAdd__userAdd">
                             <Dropdown>
@@ -154,7 +176,7 @@ export default function UserTaskInfo() {
                 {
                     tasksChil.map((taskItem, index) => (
                         <UserList
-                            key={taskItem.id} 
+                            key={taskItem.id}
                             inputRef={inputRef}
                             editingTaskName={editingTaskName}
                             closeRef={closeRef}
