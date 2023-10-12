@@ -56,7 +56,7 @@ function Chat({ card }) {
         },
       }
     )
-    setMessages(response.data)
+    setMessages(response.data);
     console.log(response.data);
   }
 
@@ -83,7 +83,7 @@ function Chat({ card }) {
       }
     
       await axios.post(
-        'http://manager.zafarr.uz/routers/comment/',
+        `http://manager.zafarr.uz/routers/comments/card/post/${card.id}/`,
         formData,
         {
           headers: {
@@ -117,9 +117,9 @@ function Chat({ card }) {
         {messages.map((message, index) => (
           <div key={index} className="message">
             <div className="user-name">
-              <img src={userInfos[0].profile_image} alt="img" />
+              <img src={message.user[0].profile_image} alt="img" />
               <div className="TextComment">
-                <p>{userInfos[0].first_name} {userInfos[0].last_name}</p>
+                <p>{message.user[0].first_name} {message.user[0].last_name}</p>
                 <p id='text'>{message.text}</p>
                 {message.file && (
                   <div>
