@@ -56,7 +56,6 @@ function App() {
     <>
       <Routes>
         <Route path='/login' element={<Login />} />
-        <Route path='*' element={<ErrorPage />} />
         {
           is_admin === 'true' ? (
             <>
