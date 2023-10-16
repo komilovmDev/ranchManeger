@@ -12,7 +12,7 @@ export default function Navbar() {
     const userID = localStorage.getItem('userID')
     const [userInfos, setUserInfos] = useState([])
     const getUserInfo = async () => {
-        const response = await axios.get(`http://manager.zafarr.uz/routers/userprofile/${userID}/`)
+        const response = await axios.get(`https://manager.zafarr.uz/routers/userprofile/${userID}/`)
         setUserInfos(response.data)
     }
 
@@ -30,7 +30,7 @@ export default function Navbar() {
                 <Link to={'/Profil'}>
                     {
                         userInfos.map(item => (
-                            <button className="userInfo">
+                            <button className="userInfo" key={item.id}>
                                 <img src={item.profile_image} alt="" />
                                 <h5>{item.first_name == "" ? item.username : item.first_name} {item.last_name == "" ? item.username : item.last_name}</h5>
                             </button>

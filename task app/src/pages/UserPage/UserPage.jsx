@@ -4,7 +4,7 @@ import MainCard from "../../companents/mainCards/MainCard";
 import MainNav from "../../companents/mainNav/MainNav";
 import Navbar from "../../companents/navbar/Navbar";
 import TaskCard from "../../companents/taskCard/TaskCard";
-import UserNav from "../../companents/userNav/userNav";
+import UserNav from "../../companents/userNav/UserNav";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import UserCards from "./UserCards";
@@ -13,7 +13,7 @@ import UserCards from "./UserCards";
 export default function Home() {
 
     const getUser = async () => {
-        const response = await axios.get("http://manager.zafarr.uz/users/")
+        const response = await axios.get("https://manager.zafarr.uz/users/")
         setUserData(response.data)
     }
 
@@ -30,7 +30,7 @@ export default function Home() {
 
     const getBoard = async () => {
         try {
-            const response = await axios.get(`http://manager.zafarr.uz/routers/user/boards/${userID}/`, {
+            const response = await axios.get(`https://manager.zafarr.uz/routers/user/boards/${userID}/`, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Token ${token}`,
